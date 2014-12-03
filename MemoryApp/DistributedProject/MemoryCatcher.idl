@@ -1,0 +1,18 @@
+module MemoryCatcherApp
+{
+  interface MemoryCatcher
+  {
+    boolean login(in string username, in string password);
+    boolean register(in string username, in string password, in string email);
+    boolean addMemory(in string memoryName,in string memoryDescription,in string username);
+    boolean removeMemory(in string memoryName);			
+    oneway void buy(in long amount);
+    string getMemory(in string memoryName,in string memoryContext);	
+    long getResource();
+	
+	
+	
+
+	
+     };
+};
