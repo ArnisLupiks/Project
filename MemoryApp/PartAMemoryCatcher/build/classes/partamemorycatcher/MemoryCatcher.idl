@@ -1,13 +1,27 @@
 module MemoryCatcherApp
 {
+  struct Memory { 
+      string name; 
+      string description;
+      long id;
+  }; 
+  
+  typedef sequence<Memory> AllMemories;
+  
+  struct Resources {
+  	long user;
+  	long resources;
+  };
+  
+  typedef sequence<Resources> AllResources;
+  
   interface MemoryCatcher
   {
     	long login(in string username, in string password);
    	long register(in string username, in string email, in string password);
 	long addMemory(in string memoryName, in string memoryDescription);
-	string getMemories();
-	
-
-	
+	AllMemories getAllMemories();
+	long addResources(in long resources);
+	AllResources viewResources();
      };
 };
