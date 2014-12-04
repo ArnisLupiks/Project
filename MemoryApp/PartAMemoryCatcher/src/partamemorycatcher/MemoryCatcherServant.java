@@ -163,12 +163,23 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
-                st = con.createStatement();  
-                //compare data between input and databse
-                pst = con.prepareStatement("INSERT INTO `resources`(`userID`,`resources`) VALUES (?,?)");
+                st = con.createStatement(); 
+                pst = con.prepareStatement("SELECT * FROM `resources` WHERE userID=?");
                 pst.setInt(1, Logged);
-                pst.setInt(2, resources);
-                pst.executeUpdate();
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    //store userID in local server
+                    int resource = rs.getInt("resources");
+                    int total = resource + resources;
+                    System.out.println("userID:" +total);
+                    pst = con.prepareStatement("UPDATE `resources` set resources=? where userID=?");
+                    pst.setInt(1, total);
+                    pst.setInt(2, Logged);
+                    pst.executeUpdate();
+                    addResources = total;
+                }else{
+                    addResources = -1;
+                }
             }catch(Exception e){
                 System.out.println("Got an exception in add Resorces" +e);
             }
