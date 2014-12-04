@@ -103,12 +103,20 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 pst.setString(2, memoryName);
                 pst.setString(3, memoryDescription);
                 pst.executeUpdate();
-             if(rs.next()){
-                   
+                pst = con.prepareStatement("SELECT * FROM `resources` WHERE userID=?");
+                pst.setInt(1, Logged);
+                rs = pst.executeQuery();
+                if(rs.next()){
                     //store userID in local server
-                    int memoryIDs = rs.getInt("memoryID");
-                    System.out.println("userID:" +memoryIDs);
-                    memoryID = memoryIDs;
+                    int resource = rs.getInt("resources");
+                    int total = resource - 2;
+                   
+                    System.out.println("Resources left:" +total);
+                    pst = con.prepareStatement("UPDATE `resources` set resources=? where userID=?");
+                    pst.setInt(1, total);
+                    pst.setInt(2, Logged);
+                    pst.executeUpdate();
+                    memoryID = Logged;
                 }else{
                     memoryID = -1;
                 }
@@ -156,7 +164,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
              return allMemories;
         
         }
-//******Add Resources **********************************************************       
+//****** Add Resources ***********************************************************************************************       
         public int addResources(int resources){
             int addResources=0;
             try{
@@ -185,7 +193,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             }
             return addResources;
     }
- //***** View Resources ********************************************************  
+ //***** View Resources ***********************************************************************************************  
         public Resources[] viewResources() {
             int user = Logged;
             List<Resources> resources = new ArrayList<Resources>();
@@ -198,13 +206,11 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 //compare data between input and databse
                 pst.setString(1,""+Logged);
                 rs = pst.executeQuery();
-                
                 Resources aResources;
                 //if loggin succeed do:
                 while(rs.next()){
                     int userID = rs.getInt("userID");
                     int Resources = rs.getInt("resources");
-                   
                     aResources = new Resources(userID, Resources);
                     resources.add(aResources);
                     System.out.println("memoryID: '" +userID+ "'| memoryName: '"+Resources);
