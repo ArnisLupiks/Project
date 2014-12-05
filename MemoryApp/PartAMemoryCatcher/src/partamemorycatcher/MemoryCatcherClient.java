@@ -45,7 +45,7 @@ public class MemoryCatcherClient {
                                             do{
                                                 // System.out.println("Please log in or else create an account");
                                                 System.out.println("-----------------------------------------------------------------------------");
-                                                System.out.println("1 view memory; 2 add memory; 3 Resources; 4 Remove Memory; 5 Logout.");
+                                                System.out.println("1 view memory; 2 add memory; 3 Resources; 4 Remove Memory; 5 Messages; 6 Logout.");
                                                 menuChoice = (char)(System.in.read());
                                                 userEntry.readLine(); //Need to clear the out the buffer
                                                 if (menuChoice==(char)'1') {
@@ -123,7 +123,21 @@ public class MemoryCatcherClient {
                                                          }else{
                                                         System.out.println("Failed to delete memory " + memoryID);
                                                         }
-                                                }else if (menuChoice==(char)'5') {
+                                                 }else if (menuChoice==(char)'5') {
+                                                    System.out.println("----------------------------------------------------");
+                                                    System.out.println("1 Invite User; 2 Inbox;");
+                                                      menuChoice = (char)(System.in.read());
+                                                userEntry.readLine(); //Need to clear the out the buffer
+                                                if (menuChoice==(char)'1') {
+                                                    System.out.println("----------------------------------------------------");
+                                                    System.out.println("Please type your message");
+                                                    String messageContent  = userEntry.readLine();
+                                                    System.out.println("Please enter username of who you want to invite");
+                                                    String receiver = userEntry.readLine();
+                                                    System.out.println("Please type your username");
+                                                    String sender  = userEntry.readLine();
+                                                    int addMessage = memorycatcherRef.addMessage(messageContent, receiver, sender);
+                                                }
                                                     
                                                     
                                                     

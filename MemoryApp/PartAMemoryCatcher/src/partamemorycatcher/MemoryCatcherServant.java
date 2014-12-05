@@ -8,9 +8,22 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
 	// Add the MemoryCatchers methods here in the next step.
         final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
         final String ROOT = "root";
+        
+         class User{
+          int id;
+          String username;
+          
+          public User(int id, String username){
+            this.id = id;
+            this.username = username;
+          }
+        }
+        
+        User loggedInUser = null;
         int Logged = -1;   
         int memoryID = -1;
         int resourceID = -1;
+        int messageID =-1;
         String user = null;
         String mail = null;
         //private Connection con;
@@ -289,6 +302,69 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 System.out.println("Got an exception in Share Resorces" +e);
             }
             return shareResources;
+    }
+       //view Messages in inbox
+        @Override
+        public Message[] getAllMessages() {
+            int user = Logged;
+            List<Message> messages = new ArrayList<Message>();
+            try{
+                 //connects to database
+                Connection con = DriverManager.getConnection(DATABASE_CONN,"root","");
+                st = con.createStatement(); 
+                pst = con.prepareStatement("select * from messages WHERE username=?");  
+                //compare data between input and databse
+                pst.setString(1,""+Logged);
+                rs = pst.executeQuery();
+                
+                Message aMessage;
+                //if loggin succeed do:
+                while(rs.next()){
+                    int messageID = rs.getInt("messageID");
+                    String receiver = rs.getString("receiver");
+                    String messageContent = rs.getString("messageContent");
+                    String sender = rs.getString("sender");
+                    //store userID in local server
+                    String content = rs.getString("messageContent");
+                    aMessage = new Message(receiver, messageContent, sender, messageID);
+                    messages.add(aMessage);
+                    System.out.println("messageID: " +messageID+ " receiver: "+receiver+ " sender: " + sender + " messageContent: "+content);
+                }    
+            }catch(Exception e){
+                System.out.println("Got an exception in Get Messages" +e);
+            }
+            //TODO memories to Memory[];
+            Message[] allMessages = new Message[messages.size()];
+            allMessages = messages.toArray(allMessages);
+             return allMessages;
+        
+        }   
+        
+        
+         //Invite User
+           public int addMessage(String receiver, String messageContent, String sender){
+               sender = null;
+               if (loggedInUser != null){
+               sender = loggedInUser.username;
+               }
+               messageID = -1;
+                 try{
+                 //connects to database
+                Connection con = DriverManager.getConnection(DATABASE_CONN,"root","");
+                st = con.createStatement();  
+                //compare data between input and databse
+                pst = con.prepareStatement("INSERT INTO `messages`(`receiver``messageContent`, `sender`)VALUES(?,?,?)");
+                pst.setString(1, messageContent);
+                pst.setString(2,receiver);
+                pst.setString(3, sender);
+                pst.executeUpdate();
+             
+           
+         }catch(Exception e){
+                System.out.println("Got an exception in addMessage into messages" +e);
+         }
+        
+                    return -1;
     }
 
 
