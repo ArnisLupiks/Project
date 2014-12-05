@@ -256,8 +256,10 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
         
         } 
 //****** Add Resources ***********************************************************************************************       
-        public int shareResources(int resources, String name){
+          public int shareResources(int resources, String name){
             int shareResources=0;
+            int resource = 0;
+            int userIdent = 0;
             try{
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
@@ -269,12 +271,12 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 char answer;
                 if(rs.next()){
                     //store userID in local server
-                    int resource = rs.getInt("resources");
+                    resource = rs.getInt("resources");
                     pst = con.prepareStatement("SELECT * FROM `users` WHERE username=?");
                     pst.setString(1, name);
                     rs = pst.executeQuery();
                     if(rs.next()){
-                        int userIdent = rs.getInt("userID");
+                        userIdent = rs.getInt("userID");
                         System.out.println("Yeey, you have found user!!!!!");
                         System.out.println("Your fiend "+name+ " userID is: "+userIdent);
                         int total = resource - resources;
@@ -285,10 +287,20 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                         pst.executeUpdate();
                         shareResources = total;
                         if(pst.executeUpdate()>0){
-                            pst = con.prepareStatement("UPDATE `resources` set resources=? where userID=?");
-                            pst.setInt(1, resources);
-                            pst.setInt(2, userIdent);
-                            pst.executeUpdate();
+                            pst = con.prepareStatement("SELECT * FROM `resources` WHERE userID=?");
+                            pst.setInt(1, userIdent);
+                            rs = pst.executeQuery();
+                            if(rs.next()){
+                                int userResources = rs.getInt("resources");
+                                System.out.println("User :"+userIdent+" before recieveing resources was: "+userResources);
+                                int updatedResources = resources+ userResources;
+                                pst = con.prepareStatement("UPDATE `resources` set resources=? where userID=?");
+                                pst.setInt(1, updatedResources);
+                                pst.setInt(2, userIdent);
+                                pst.executeUpdate();
+                            }else{
+                                return 0;
+                            }
                         }else{
                             return 0;
                         }
