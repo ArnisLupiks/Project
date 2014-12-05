@@ -143,8 +143,8 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
              int userIDs = Logged;
           try{
                 //connects to database
-                Connection con = DriverManager.getConnection(DATABASE_CONN,"root","");
-                st = con.createStatement();
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                
                 // Removes data from the tables
                 pst = con.prepareStatement("delete from memory WHERE memoryID=?");
                 pst.setInt(1,memoryID);
