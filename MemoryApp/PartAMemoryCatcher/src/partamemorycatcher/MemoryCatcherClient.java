@@ -79,11 +79,11 @@ public class MemoryCatcherClient {
                                                         userEntry.readLine(); //Need to clear the out the buffer
                                                         if (menuChoice==(char)'1') {
                                                             System.out.println("----------------------------------------------------");
-                                                             System.out.println("----------------------------------------------------");
-                                                             Resources[] resources = memorycatcherRef.viewResources();
-                                                                System.out.println("This is all your resources:");  
-                                                                for (Resources r : resources){
-                                                                System.out.println("Your Resources: " + r.resources);    
+                                                            System.out.println("----------------------------------------------------");
+                                                            Resources[] resources = memorycatcherRef.viewResources();
+                                                            System.out.println("This is all your resources:");  
+                                                            for (Resources r : resources){
+                                                            System.out.println("Your Resources: " + r.resources);    
                                                                 }
                                                         }else if(menuChoice==(char)'2'){
                                                             System.out.println("----------------------------------------------------");
@@ -93,7 +93,12 @@ public class MemoryCatcherClient {
                                                             int addResources = memorycatcherRef.addResources(resources);
                                                         } else if(menuChoice==(char)'3'){
                                                             System.out.println("----------------------------------------------------");
-
+                                                            System.out.println("Please write user name to whom ou would like to send resources: ");
+                                                            String user = userEntry.readLine();
+                                                            System.out.println("Please enter amount you would like to send: ");
+                                                            String amount = userEntry.readLine();
+                                                            int resources = Integer.parseInt(amount);
+                                                            int addResources = memorycatcherRef.shareResources(resources, user);
                                                         } 
                                                         }while (menuChoice != (char)'4');
                                                         }

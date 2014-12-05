@@ -23,5 +23,6 @@ module MemoryCatcherApp
 	AllMemories getAllMemories();
 	long addResources(in long resources);
 	AllResources viewResources();
+	long shareResources(in long resources,in string name);
      };
 };
