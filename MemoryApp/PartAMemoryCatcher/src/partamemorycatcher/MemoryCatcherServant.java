@@ -6,7 +6,8 @@ import java.util.List;
 //Servant
 public class MemoryCatcherServant extends _MemoryCatcherImplBase {
 	// Add the MemoryCatchers methods here in the next step.
-     
+        final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
+        final String ROOT = "root";
         int Logged = -1;   
         int memoryID = -1;
         int resourceID = -1;
@@ -123,6 +124,24 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 System.out.println("Got an exception in addMemory Servant! "+e);  
             }
             return memoryID;
+        }
+        //Removes a Memory
+        public boolean removeMemory(int memoryID){
+             int userIDs = Logged;
+          try{
+                //connects to database
+                Connection con = DriverManager.getConnection(DATABASE_CONN,"root","");
+                st = con.createStatement();
+                // Removes data from the tables
+                pst = con.prepareStatement("delete from memory WHERE memoryID=?");
+                pst.setInt(1,memoryID);
+                pst.executeUpdate();
+            
+            } catch (Exception e) {
+                System.out.println("Got an exception in removeMemory Servant! "+e);  
+                return false;
+            }
+            return true;
         }
         
         

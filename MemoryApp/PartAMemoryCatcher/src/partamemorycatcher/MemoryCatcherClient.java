@@ -45,7 +45,7 @@ public class MemoryCatcherClient {
                                             do{
                                                 // System.out.println("Please log in or else create an account");
                                                 System.out.println("-----------------------------------------------------------------------------");
-                                                System.out.println("1 view memory; 2 add memory; 3 Resources; 4 Show database; 5 Logout.");
+                                                System.out.println("1 view memory; 2 add memory; 3 Resources; 4 Remove Memory; 5 Logout.");
                                                 menuChoice = (char)(System.in.read());
                                                 userEntry.readLine(); //Need to clear the out the buffer
                                                 if (menuChoice==(char)'1') {
@@ -106,10 +106,32 @@ public class MemoryCatcherClient {
                                                             System.out.println("Systems is broken: "+e);
                                                         }
                                                         
-                                                }else if (menuChoice==(char)'4') {
+                                               }else if (menuChoice==(char)'4') {
+                                                    // Delete memory
+                                                    System.out.println("----------------------------------------------------");
+                                                    System.out.println("Which memory would you like to delete?");
+                                                     Memory[] memories = memorycatcherRef.getAllMemories();
+                                                    System.out.println("Please select the id of the  memory you want to delete:");  
+                                                        for (Memory m : memories){
+                                                    System.out.println("ID:" +m.id + " Name:" + m.name);    
+                                                        }
+                                                    String memory = userEntry.readLine();
+                                                    int memoryID = Integer.parseInt(memory);
+                                                    boolean removeMemory = memorycatcherRef.removeMemory(memoryID); 
+                                                    if (removeMemory ){
+                                                        System.out.println("Memory with id of " + memoryID +" is removed");
+                                                         }else{
+                                                        System.out.println("Failed to delete memory " + memoryID);
+                                                        }
+                                                }else if (menuChoice==(char)'5') {
+                                                    
+                                                    
+                                                    
+                                                    
+                                                }else if (menuChoice==(char)'6') {
                                                                 
                                                 }
-                                            }while(menuChoice != (char)'5');
+                                            }while(menuChoice != (char)'7');
                                         }
                                         catch(Exception e){
                                         System.out.println("Systems is broken: "+e);

@@ -20,6 +20,7 @@ module MemoryCatcherApp
     	long login(in string username, in string password);
    	long register(in string username, in string email, in string password);
 	long addMemory(in string memoryName, in string memoryDescription);
+	boolean removeMemory(in long memoryID);
 	AllMemories getAllMemories();
 	long addResources(in long resources);
 	AllResources viewResources();
