@@ -145,7 +145,7 @@ public class MemoryCatcherClient {
                                                                 menuChoice = (char)(System.in.read());
                                                                 userEntry.readLine(); //Need to clear the out the buffer
                                                                 if (menuChoice==(char)'1') {
-                                                                //This is the invite user to see snaps code    
+                                                                //This is the invite to user to see holiday moments    
                                                                 System.out.println("----------------------------------------------------");
                                                                 System.out.println("Please type your username:");
                                                                 String sender = userEntry.readLine();
@@ -155,7 +155,7 @@ public class MemoryCatcherClient {
                                                                 String messageContent  = userEntry.readLine();
                                                                 System.out.println("Please enter userID of who you want to invite");
                                                                 String receiver = userEntry.readLine();
-                                                                int addMessage = memorycatcherRef.addMessage(messageName, messageContent, receiver);
+                                                                int addMessage = memorycatcherRef.addMessage(sender, messageName, messageContent, receiver);
                                                                 }else if (menuChoice==(char)'2'){
                                                                 //This is the user inbox    
                                                                 System.out.println("----------------------------------------------------");

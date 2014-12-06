@@ -9,6 +9,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
         final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
         final String ROOT = "root";
         
+        // This is a class for the user
          class User{
           int id;
           String username;
@@ -48,10 +49,10 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 rs = pst.executeQuery();
                 //if loggin succeed do:
                 if(rs.next()){
-                    String usernamers = rs.getString("username");
                     //store userID in local server
                     int userID = rs.getInt("userID");
-                    System.out.println("userID:" +userID+" username: "+usernamers);
+                    System.out.println("userID:" +userID+" username: "+username);
+                    loggedInUser = new User(userID, username);
                     Logged = userID;
                 }else{
                     Logged = -1;
@@ -355,8 +356,8 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
         
         
          //Invite User
-           public int addMessage(String messageName, String messageContent, String receiver){
-               String sender = null;
+           public int addMessage( String sender, String messageName, String messageContent, String receiver){
+               sender = null;
                if (loggedInUser != null){
                sender = loggedInUser.username;
                }
@@ -366,8 +367,8 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement();  
                 //compare data between input and databse
-                pst = con.prepareStatement("INSERT INTO `messages`(`sender`, `messageName`, `messageContent`,`receiverID`)VALUES(?,?,?,?)");
-                pst.setString(1, loggedInUser.username);
+                pst = con.prepareStatement("INSERT INTO `messages`(`sender`, `messageName`, `messageContent`, `receiverID`) VALUES (?,?,?,?)");
+                pst.setString(1, sender);
                 pst.setString(2, messageName);
                 pst.setString(3, messageContent);
                 pst.setString(4,receiver);
@@ -389,56 +390,6 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
 
 
 }
-
-/*	//Remove Memory
-	public boolean removeMemory(String memoryName){
-            String sql = "DELETE FROM ARNIS.MEMORIES WHERE memoryName = memoryName";
-            return true;
-	}
-	//Transfer Points
-	//public boolean transfer(int points, String username){
-
-	//}
-	//Buy Resource Points
-	public void buy(int amount){
-		memoryResourcePoints = memoryResourcePoints + amount;
-	}
-	//public boolean share(int memoryIndex){
-
-	//}
-	//Get Memory
-	//public int getMemory(int memoryIndex){
-	//	return memory;
-
-	//}
-
-	//View Resouces
         
   
-	
 
-
-	//public ArrayList<String> getMemories(){
-	//  return memories;
-	//}
-
-	//public String share(String memories){
-	//  moments = memories + moments;
-	//}
-
-	//public boolean login(String userName, String password){
-	//	return false;
-	//}
-
-	
-
-	//public boolean addMemory(String memory){
-	//  return memories.add(memory);
-	//}
-
-	//public boolean removeMemory(String memory){
-	  	//TODO
-	//}
-
-*/
-//}
