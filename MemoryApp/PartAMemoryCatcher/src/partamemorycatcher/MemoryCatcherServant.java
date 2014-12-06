@@ -37,7 +37,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
              try{
                 //make connection to d0atabase
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement();
                 //select from database
                 String query = "select * from users WHERE username=? and password=?";
@@ -67,7 +67,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             try{
                 //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement();
                 //inserts data into table
                 pst = con.prepareStatement("INSERT INTO `users` (`username`, `email`, `password`)VALUES(?,?,?)");
@@ -109,7 +109,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             try{
                 //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement();
                 //inserts data into table
                 pst = con.prepareStatement("INSERT INTO `memory`(`userID`, `memoryName`, `MemoryDescription`) VALUES (?,?,?)");
@@ -143,7 +143,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
              int userIDs = Logged;
           try{
                 //connects to database
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 
                 // Removes data from the tables
                 pst = con.prepareStatement("delete from memory WHERE memoryID=?");
@@ -167,7 +167,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             try{
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
                 pst = con.prepareStatement("select * from memory WHERE userID=?");  
                 //compare data between input and databse
@@ -201,7 +201,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             try{
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
                 pst = con.prepareStatement("SELECT * FROM `resources` WHERE userID=?");
                 pst.setInt(1, Logged);
@@ -231,7 +231,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             try{
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
                 pst = con.prepareStatement("SELECT * FROM resources WHERE userID=?");  
                 //compare data between input and databse
@@ -263,7 +263,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             try{
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/memorycatcher","root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
                 pst = con.prepareStatement("SELECT * FROM `resources` WHERE userID=?");
                 pst.setInt(1, Logged);
