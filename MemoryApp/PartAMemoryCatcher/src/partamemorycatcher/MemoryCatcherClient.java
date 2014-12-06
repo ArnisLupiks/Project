@@ -2,6 +2,7 @@ package partamemorycatcher;
 import MemoryCatcherApp.Memory;
 import MemoryCatcherApp.MemoryCatcherHelper; // The package containing generated stubs.
 import MemoryCatcherApp.MemoryCatcher;
+import MemoryCatcherApp.Message;
 import MemoryCatcherApp.Resources;
 import org.omg.CORBA.*; // All CORBA
 // needed for output to the file system.
@@ -144,12 +145,26 @@ public class MemoryCatcherClient {
                                                                 menuChoice = (char)(System.in.read());
                                                                 userEntry.readLine(); //Need to clear the out the buffer
                                                                 if (menuChoice==(char)'1') {
-                                                                    System.out.println("this is invite user page");
+                                                                System.out.println("----------------------------------------------------");
+                                                                System.out.println("Please type your username:");
+                                                                String sender = userEntry.readLine();
+                                                                System.out.println("Please type your message name");
+                                                                String messageName = userEntry.readLine();
+                                                                System.out.println("Please type your message");
+                                                                String messageContent  = userEntry.readLine();
+                                                                System.out.println("Please enter userID of who you want to invite");
+                                                                String receiver = userEntry.readLine();
+                                                                int addMessage = memorycatcherRef.addMessage(sender, messageName, messageContent, receiver);
                                                                 }else if (menuChoice==(char)'2'){
-                                                                    System.out.println("This is inbox page");
-                                                                }
-                                                            }while(menuChoice!=(char)'3');
-                                                        }
+                                                                System.out.println("----------------------------------------------------");
+                                                                    Message [] messages = memorycatcherRef.getAllMessages();
+                                                                System.out.println("This is all your messages:");  
+                                                                    for (Message n : messages){
+                                                                System.out.println("From: " + n.sender + " Content: " + n.content);    
+                                                                         }
+                                                                    }
+                                                                }while(menuChoice!=(char)'3');
+                                                            }
                                                             catch(Exception e){
                                                             System.out.println("Systems is broken: "+e);
                                                         }
