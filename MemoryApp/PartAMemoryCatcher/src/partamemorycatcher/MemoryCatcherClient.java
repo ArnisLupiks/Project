@@ -145,6 +145,7 @@ public class MemoryCatcherClient {
                                                                 menuChoice = (char)(System.in.read());
                                                                 userEntry.readLine(); //Need to clear the out the buffer
                                                                 if (menuChoice==(char)'1') {
+                                                                //This is the invite user to see snaps code    
                                                                 System.out.println("----------------------------------------------------");
                                                                 System.out.println("Please type your username:");
                                                                 String sender = userEntry.readLine();
@@ -154,13 +155,16 @@ public class MemoryCatcherClient {
                                                                 String messageContent  = userEntry.readLine();
                                                                 System.out.println("Please enter userID of who you want to invite");
                                                                 String receiver = userEntry.readLine();
-                                                                int addMessage = memorycatcherRef.addMessage(sender, messageName, messageContent, receiver);
+                                                                int addMessage = memorycatcherRef.addMessage(messageName, messageContent, receiver);
                                                                 }else if (menuChoice==(char)'2'){
+                                                                //This is the user inbox    
                                                                 System.out.println("----------------------------------------------------");
                                                                     Message [] messages = memorycatcherRef.getAllMessages();
                                                                 System.out.println("This is all your messages:");  
                                                                     for (Message n : messages){
-                                                                System.out.println("From: " + n.sender + " Content: " + n.content);    
+                                                                System.out.println("From: " + n.sender);
+                                                                System.out.println("Title : " + n.name); 
+                                                                System.out.println("Message: " + n.content);  
                                                                          }
                                                                     }
                                                                 }while(menuChoice!=(char)'3');

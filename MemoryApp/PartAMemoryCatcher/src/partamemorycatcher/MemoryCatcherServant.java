@@ -324,7 +324,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                  //connects to database
                 Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
-                pst = con.prepareStatement("select * from messages WHERE username=?");  
+                pst = con.prepareStatement("select * from messages WHERE receiverID=?");  
                 //compare data between input and databse
                 pst.setString(1,""+Logged);
                 rs = pst.executeQuery();
@@ -333,14 +333,15 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 //if loggin succeed do:
                 while(rs.next()){
                     int messageID = rs.getInt("messageID");
-                    String receiver = rs.getString("receiver");
+                    String messageName = rs.getString("messageName");
                     String messageContent = rs.getString("messageContent");
+                    String receiver = rs.getString("receiverID");
                     String sender = rs.getString("sender");
                     //store userID in local server
                     String content = rs.getString("messageContent");
-                    aMessage = new Message(receiver, messageContent, sender, messageID);
+                    aMessage = new Message(messageName, messageContent, receiver, sender, messageID);
                     messages.add(aMessage);
-                    System.out.println("messageID: " +messageID+ " receiver: "+receiver+ " sender: " + sender + " messageContent: "+content);
+                    System.out.println("messageID: " +messageID+ " messageName: " +messageName + " messageContent: "+content + " receiver: "+receiver+  " sender: " + sender);
                 }    
             }catch(Exception e){
                 System.out.println("Got an exception in Get Messages" +e);
@@ -354,8 +355,8 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
         
         
          //Invite User
-           public int addMessage(String sender, String messageName, String messageContent, String receiver){
-               sender = null;
+           public int addMessage(String messageName, String messageContent, String receiver){
+               String sender = null;
                if (loggedInUser != null){
                sender = loggedInUser.username;
                }
@@ -365,10 +366,11 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement();  
                 //compare data between input and databse
-                pst = con.prepareStatement("INSERT INTO `messages`(`messageName``messageContent`,`receiverID`)VALUES(?,?,?)");
-                pst.setString(1, messageName);
-                pst.setString(1, messageContent);
-                pst.setString(2,receiver);
+                pst = con.prepareStatement("INSERT INTO `messages`(`sender`, `messageName`, `messageContent`,`receiverID`)VALUES(?,?,?,?)");
+                pst.setString(1, loggedInUser.username);
+                pst.setString(2, messageName);
+                pst.setString(3, messageContent);
+                pst.setString(4,receiver);
                 pst.executeUpdate();
               if(rs.next()){
                     //store userID in local server
