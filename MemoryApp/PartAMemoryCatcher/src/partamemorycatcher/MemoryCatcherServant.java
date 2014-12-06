@@ -322,7 +322,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             List<Message> messages = new ArrayList<Message>();
             try{
                  //connects to database
-                Connection con = DriverManager.getConnection(DATABASE_CONN,"root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
                 pst = con.prepareStatement("select * from messages WHERE username=?");  
                 //compare data between input and databse
@@ -354,7 +354,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
         
         
          //Invite User
-           public int addMessage(String receiver, String messageContent, String sender){
+           public int addMessage(String sender, String messageName, String messageContent, String receiver){
                sender = null;
                if (loggedInUser != null){
                sender = loggedInUser.username;
@@ -362,16 +362,22 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                messageID = -1;
                  try{
                  //connects to database
-                Connection con = DriverManager.getConnection(DATABASE_CONN,"root","");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement();  
                 //compare data between input and databse
-                pst = con.prepareStatement("INSERT INTO `messages`(`receiver``messageContent`, `sender`)VALUES(?,?,?)");
+                pst = con.prepareStatement("INSERT INTO `messages`(`messageName``messageContent`,`receiverID`)VALUES(?,?,?)");
+                pst.setString(1, messageName);
                 pst.setString(1, messageContent);
                 pst.setString(2,receiver);
-                pst.setString(3, sender);
                 pst.executeUpdate();
-             
-           
+              if(rs.next()){
+                    //store userID in local server
+                    int messageIDs = rs.getInt("messageID");
+                    System.out.println("userID:" +messageIDs);
+                    messageID = messageIDs;
+                }else{
+                    messageID = -1;
+                }
          }catch(Exception e){
                 System.out.println("Got an exception in addMessage into messages" +e);
          }
