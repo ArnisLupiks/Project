@@ -3,8 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Barry/Desktop/College/Network%20programming%20and%20distributed%20systems/Project/New%20folder/Project/MemoryApp/PartAMemoryCatcher/src/partamemorycatcher/MemoryCatcherClient.java</file>
-            <file>file:/C:/Users/Barry/Desktop/College/Network%20programming%20and%20distributed%20systems/Project/New%20folder/Project/MemoryApp/PartAMemoryCatcher/src/partamemorycatcher/MemoryCatcherServant.java</file>
+            <file>file:/C:/Users/Arnis/Desktop/Project/MemoryApp/PartAMemoryCatcher/src/partamemorycatcher/MemoryCatcher.idl</file>
+            <file>file:/C:/Users/Arnis/Desktop/Project/MemoryApp/PartAMemoryCatcher/src/partamemorycatcher/MemoryCatcherServer.java</file>
+            <file>file:/C:/Users/Arnis/Desktop/Project/MemoryApp/PartAMemoryCatcher/src/partamemorycatcher/MemoryCatcherClient.java</file>
+            <file>file:/C:/Users/Arnis/Desktop/Project/MemoryApp/PartAMemoryCatcher/src/partamemorycatcher/MemoryCatcherServant.java</file>
         </group>
     </open-files>
 </project-private>
