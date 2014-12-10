@@ -64,7 +64,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             }
 //******Register function*******************************************************
 	public int register(String username, String email, String password){
-            int register = 0;
+            int register = -1;
             try{
                 //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
@@ -75,9 +75,9 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 pst.setString(1, username);
                 pst.setString(2, email);
                 pst.setString(3, password);
+                pst.executeUpdate();
                 user = username;
                 mail = email;
-                pst.executeUpdate();
                 if(pst.executeUpdate()>0){
                     pst = con.prepareStatement("SELECT * FROM `users` WHERE username=? and email=?");
                     pst.setString(1, user);
