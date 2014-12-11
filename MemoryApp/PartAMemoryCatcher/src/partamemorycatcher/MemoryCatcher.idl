@@ -8,13 +8,6 @@ module MemoryCatcherApp
   
   typedef sequence<Memory> AllMemories;
   
-  struct Resources {
-  	long user;
-  	long resources;
-  };
-  
-  typedef sequence<Resources> AllResources;
-  
   struct Message {
   	string name;
     	string content;
@@ -33,7 +26,7 @@ module MemoryCatcherApp
 	boolean removeMemory(in long memoryID);
 	AllMemories getAllMemories();
 	long addResources(in long resources);
-	AllResources viewResources();
+	long viewResources();
 	long shareResources(in long resources,in string name);
 	long addMessage(in string sender, in string messageName, in string messageContent, in string receiver);
 	AllMessages getAllMessages();

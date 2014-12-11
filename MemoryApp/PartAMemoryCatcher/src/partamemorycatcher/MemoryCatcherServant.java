@@ -19,7 +19,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             this.username = username;
           }
         }
-        
+         int allResources = 0;
         User loggedInUser = null;
         int Logged = -1;   
         int memoryID = -1;
@@ -156,10 +156,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 return false;
             }
             return true;
-        }
-        
-        
-                
+        }          
 	//view Memory
         @Override
         public Memory[] getAllMemories() {
@@ -226,9 +223,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             return addResources;
     }
  //***** View Resources ***********************************************************************************************  
-        public Resources[] viewResources() {
-            int user = Logged;
-            List<Resources> resources = new ArrayList<Resources>();
+        public int viewResources() {
             try{
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
@@ -238,23 +233,18 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                 //compare data between input and databse
                 pst.setString(1,""+Logged);
                 rs = pst.executeQuery();
-                Resources aResources;
-                //if loggin succeed do:
-                while(rs.next()){
-                    int userID = rs.getInt("userID");
-                    int Resources = rs.getInt("resources");
-                    aResources = new Resources(userID, Resources);
-                    resources.add(aResources);
-                    System.out.println("memoryID: '" +userID+ "'| memoryName: '"+Resources);
-                }    
+                if(rs.next()){
+                    int userI = rs.getInt("userID");
+                    allResources = rs.getInt("resources");
+                    System.out.println("memoryID: '" +userI+ "'| Resources: '"+allResources);
+                    return allResources;
+                } else{
+                    return allResources;
+                }   
             }catch(Exception e){
                 System.out.println("Got an exception in Get Memories" +e);
             }
-            //TODO memories to Memory[];
-            Resources[] allResources = new Resources[resources.size()];
-            allResources = resources.toArray(allResources);
              return allResources;
-        
         } 
 //****** Add Resources ***********************************************************************************************       
           public int shareResources(int resources, String name){
@@ -316,7 +306,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             }
             return shareResources;
     }
-       //view Messages in inbox
+//view Messages in inbox
         @Override
         public Message[] getAllMessages() {
             int user = Logged;
@@ -353,9 +343,7 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
              return allMessages;
         
         }   
-        
-        
-         //Invite User
+//Invite User
            public int addMessage( String sender, String messageName, String messageContent, String receiver){
                sender = null;
                if (loggedInUser != null){
