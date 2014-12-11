@@ -12,14 +12,14 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome to the add memory page</h1>
+        <h1>Welcome to the remove memory page</h1>
         <p>Please enter the following details: </p>
-        <form action="addMemory.jsp" method ="post">
+        <form action="removeMemory.jsp" method ="post">
             
-            Please enter your memory name: <input type="text" name="nme"/><br />
-            Please enter your memory description: <input type="text" name ="des"/><br />
+            Please enter your memory id: <input type="text" name="id"/><br />
+            
 
-            <input type="submit" value="add"/>
+            <input type="submit" value="remove"/>
             
         </form>
     </body>

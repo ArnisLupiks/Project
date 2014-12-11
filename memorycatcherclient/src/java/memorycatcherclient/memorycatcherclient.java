@@ -166,7 +166,72 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
             return memoryID;
     }
 
-  
-    
-         
-}
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "removeMemory")
+    public boolean removeMemory(@WebParam(name = "memoryID") int memoryID) {
+             int userIDs = Logged;
+          try{
+                //connects to database
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
+                
+                // Removes data from the tables
+                pst = con.prepareStatement("delete from memory WHERE memoryID=?");
+                pst.setInt(1,memoryID);
+                pst.executeUpdate();
+            
+            } catch (Exception e) {
+                System.out.println("Got an exception in removeMemory Servant! "+e);  
+                return false;
+            }
+            return true;
+    }
+
+    class Memory { 
+      String name; 
+      String description;
+      int id;
+  }; 
+   
+   ArrayList<Memory> AllMemories;  
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getAllMemories")
+    public ArrayList getAllMemories(ArrayList getAllMemories) {
+         int user = Logged;
+            List<Memory> memories = new ArrayList<Memory>();
+            try{
+                 //connects to database
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
+                st = con.createStatement(); 
+                pst = con.prepareStatement("select * from memory WHERE userID=?");  
+                //compare data between input and databse
+                pst.setString(1,""+Logged);
+                rs = pst.executeQuery();
+                
+                Memory aMemory;
+                //if loggin succeed do:
+                while(rs.next()){
+                    int userID = rs.getInt("userID");
+                    int memoryID = rs.getInt("memoryID");
+                    String memoryName = rs.getString("memoryName");
+                    //store userID in local server
+                    String memoryDescription = rs.getString("memoryDescription");
+                    aMemory = new Memory();
+                    memories.add(aMemory);
+                    System.out.println("memoryID: '" +memoryID+ "'| memoryName: '"+memoryName+"'| memoryDescription: '"+memoryDescription+"'");
+                }    
+            }catch(Exception e){
+                System.out.println("Got an exception in Get Memories" +e);
+            }
+            //TODO memories to Memory[];
+             Memory[] allMemories = new Memory[memories.size()];
+            allMemories = memories.toArray(allMemories);
+             return getAllMemories;
+        
+        }
+    }
+

@@ -16,6 +16,9 @@
          <form action ="addmemorypage.jsp">
             <input type="submit" value="addmemory"/>
         </form>
+         <form action ="removememorypage.jsp">
+            <input type="submit" value="addmemory"/>
+        </form>
         
     </body>
 </html>
