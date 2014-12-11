@@ -4,9 +4,9 @@
 
 <xs:element name="addMemoryResponse" type="tns:addMemoryResponse"/>
 
-<xs:element name="getAllMemories" type="tns:getAllMemories"/>
+<xs:element name="addResources" type="tns:addResources"/>
 
-<xs:element name="getAllMemoriesResponse" type="tns:getAllMemoriesResponse"/>
+<xs:element name="addResourcesResponse" type="tns:addResourcesResponse"/>
 
 <xs:element name="login" type="tns:login"/>
 
@@ -20,15 +20,23 @@
 
 <xs:element name="removeMemoryResponse" type="tns:removeMemoryResponse"/>
 
-<xs:complexType name="getAllMemories">
+<xs:element name="shareResources" type="tns:shareResources"/>
+
+<xs:element name="shareResourcesResponse" type="tns:shareResourcesResponse"/>
+
+<xs:element name="viewResources" type="tns:viewResources"/>
+
+<xs:element name="viewResourcesResponse" type="tns:viewResourcesResponse"/>
+
+<xs:complexType name="addResources">
 <xs:sequence>
-<xs:element name="arg0" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="resources" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="getAllMemoriesResponse">
+<xs:complexType name="addResourcesResponse">
 <xs:sequence>
-<xs:element name="return" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
+<xs:element name="return" type="xs:int"/>
 </xs:sequence>
 </xs:complexType>
 
@@ -65,6 +73,29 @@
 </xs:complexType>
 
 <xs:complexType name="loginResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="shareResources">
+<xs:sequence>
+<xs:element name="name" type="xs:string" minOccurs="0"/>
+<xs:element name="resources" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="shareResourcesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewResources">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewResourcesResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
 </xs:sequence>

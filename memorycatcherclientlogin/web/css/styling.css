@@ -1,0 +1,28 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 11-Dec-2014, 14:36:44
+    Author     : Arnis
+*/
+div.login_table{
+    padding-top: 100px;
+     margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+div.login_table{
+      padding-top: 50px;
+     margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    padding-bottom: 50px;
+}
+.login_h1{
+    text-align: center;
+}
+div.content{
+    padding-top: 100px;
+}

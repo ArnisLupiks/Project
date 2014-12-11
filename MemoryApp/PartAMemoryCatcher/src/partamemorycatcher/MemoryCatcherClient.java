@@ -111,11 +111,11 @@ public class MemoryCatcherClient {
                                                             if (menuChoice==(char)'1') {
                                                                 System.out.println("----------------------------------------------------");
                                                                 System.out.println("----------------------------------------------------");
-                                                                Resources[] resources = memorycatcherRef.viewResources();
+                                                                
                                                                 System.out.println("This is all your resources:");  
-                                                                for (Resources r : resources){
-                                                                System.out.println("Your Resources: " + r.resources);    
-                                                                }
+                                                                int resources = memorycatcherRef.viewResources();
+                                                                System.out.println("Your Resources: " + resources);    
+                                                               
                                                             }else if(menuChoice==(char)'2'){
                                                                 System.out.println("----------------------------------------------------");
                                                                 System.out.println("How much would you like to add");

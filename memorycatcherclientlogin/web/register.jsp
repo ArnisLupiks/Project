@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>This is register page</h1>
+        
         
         <form
     <%-- start web service invocation --%><hr/>
@@ -30,7 +30,7 @@
 	java.lang.String email = mails;
 	// TODO process result here
 	int result = port.register(username, password, email);
-	if(result>0){
+	if(result>=0){
           request.getRequestDispatcher("/index.jsp").forward(request, response);
 
         }else{

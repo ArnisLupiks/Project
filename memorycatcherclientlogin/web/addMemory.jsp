@@ -1,64 +1,68 @@
-<%-- 
-    Document   : addMemory
-    Created on : 11-Dec-2014, 13:16:47
-    Author     : Barry
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<style> img{height:200px; float: left}</style>
-	<script>
-		$(document).ready(function(){
-		
-			$("#button").click(function(){
-			$("#images").empty();
-				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-			{
-				tags: "christmas",
-				tagmode:"any",
-				format: "json"
-			}, function(data){
-				$.each(data.items, function(i,item){
-					$('<img/>').attr("src", item.media.m).appendTo('#images');
-					if(i==3) return false;
-				});
-			});
-			
-		});
-	});
-
-	</script>
-        
+        <title>This is add memory</title>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+rel="stylesheet" type="text/css" />
+        <link href="css/styling.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Memory has been added!</h1>
-        <input type="button" id = "button" value="view memory added!" /><p>
-        <div id="images"></div>
-        
-    <%-- start web service invocation --%><hr/>
-     <%
-         String mname = request.getParameter("nme");
-        String mdescription = request.getParameter("des");
-         
-    
-    try {
-	memorycatcherclient.Memorycatcherclient_Service service = new memorycatcherclient.Memorycatcherclient_Service();
-	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
-	 // TODO initialize WS operation arguments here
-	java.lang.String memoryName = mname;
-	java.lang.String memoryDescription = mdescription;
-	// TODO process result here
-	int result = port.addMemory(memoryName, memoryDescription);
-	out.println("Result = "+result);
-    } catch (Exception ex) {
-	// TODO handle custom exceptions here
-    }
-    %>
-    <%-- end web service invocation --%><hr/>
+          <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Memory Catcher</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                        <li><a href="mainpage.jsp">Home</a></li>
+                        <li class="dropdown">
+                            <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
+                            <ul class = "dropdown-menu">
+                              <li><a href="addmemory.jsp">New Memories</a></li>
+                              <li><a href="allmemories.jsp">All Memories</a></li>
+                              <li><a href="removeMemory.jsp">Remove Memory</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown active">
+                            <a class ="dropdown-toggle"  data-toggle = "dropdown">Resources <b class = "caret"></b></a>
+                            <ul class = "dropdown-menu">
+                              <li><a href="addresources.jsp">Add Resources</a></li>
+                              <li><a href="viewresources.jsp">View Resource</a></li>
+                              <li><a href="shareresources.jsp">Share Resources</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="index.jsp">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+        <div class = "login_table">
+            <div class="login_heading">
+            <h1 class="col-sm-10 login_h1">Add Memory</h1>
+        </div>
+            <form class="form-horizontal"action="addnewmemory.jsp" method="post" role="form">
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <input type="text" class="form-control input-lg"  name="memname" placeholder="Enter Memory Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <input type="text" class="form-control input-lg"   name="memcont"placeholder="Enter Your Memory Content">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Add Memory</button>
+
+                  </div>
+                </div>
+            </form>
+        </div>
     </body>
 </html>
