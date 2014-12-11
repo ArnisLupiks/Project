@@ -51,6 +51,7 @@
         </div>
             <div class="content">
                 <h1>This is Memory Catcher mate</h1>
+                <h2>well well well, lets post some memories</h2>
             </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
