@@ -1,5 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><xs:schema xmlns:tns="http://memorycatcherclient/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://memorycatcherclient/">
 
+<xs:element name="addMemory" type="tns:addMemory"/>
+
+<xs:element name="addMemoryResponse" type="tns:addMemoryResponse"/>
+
 <xs:element name="login" type="tns:login"/>
 
 <xs:element name="loginResponse" type="tns:loginResponse"/>
@@ -7,6 +11,19 @@
 <xs:element name="register" type="tns:register"/>
 
 <xs:element name="registerResponse" type="tns:registerResponse"/>
+
+<xs:complexType name="addMemory">
+<xs:sequence>
+<xs:element name="memoryName" type="xs:string" minOccurs="0"/>
+<xs:element name="memoryDescription" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addMemoryResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
 
 <xs:complexType name="login">
 <xs:sequence>

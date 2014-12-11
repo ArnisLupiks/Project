@@ -13,5 +13,9 @@
         <form action ="registerpage.jsp">
             <input type="submit" value="register"/>
         </form>
+         <form action ="addmemorypage.jsp">
+            <input type="submit" value="addmemory"/>
+        </form>
+        
     </body>
 </html>

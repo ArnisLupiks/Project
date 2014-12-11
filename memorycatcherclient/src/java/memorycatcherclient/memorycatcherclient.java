@@ -10,10 +10,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
-
 /**
  *
  * @author Arnis
@@ -124,4 +125,48 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
             return register;
         
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "addMemory")
+    public int addMemory(@WebParam(name = "memoryName") String memoryName, @WebParam(name = "memoryDescription") String memoryDescription) {
+        int userIDs = Logged;
+            memoryID=-1;
+            try{
+                //connects to database
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
+                st = con.createStatement();
+                //inserts data into table
+                pst = con.prepareStatement("INSERT INTO `memory`(`userID`, `memoryName`, `MemoryDescription`) VALUES (?,?,?)");
+                pst.setString(1, ""+userIDs);
+                pst.setString(2, memoryName);
+                pst.setString(3, memoryDescription);
+                pst.executeUpdate();
+                pst = con.prepareStatement("SELECT * FROM `resources` WHERE userID=?");
+                pst.setInt(1, Logged);
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    //store userID in local server
+                    int resource = rs.getInt("resources");
+                    int total = resource - 2;
+                    System.out.println("Resources left:" +total);
+                    pst = con.prepareStatement("UPDATE `resources` set resources=? where userID=?");
+                    pst.setInt(1, total);
+                    pst.setInt(2, Logged);
+                    pst.executeUpdate();
+                    memoryID = Logged;
+                }else{
+                    memoryID = -1;
+                }
+            } catch (Exception e) {
+                System.out.println("Got an exception in addMemory Servant! "+e);  
+            }
+            return memoryID;
+    }
+
+  
+    
+         
 }
