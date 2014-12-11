@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+      
     <%-- start web service invocation --%><hr/>
     <%
          String Name = request.getParameter("memname");
@@ -25,8 +25,8 @@
 	java.lang.String memoryDescription = content;
 	// TODO process result here
 	int result = port.addMemory(memoryName, memoryDescription);
-	out.println("Result = "+result);
-                    request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
+	//out.println("Result = "+result);
+         request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
 
     } catch (Exception ex) {
 	// TODO handle custom exceptions here

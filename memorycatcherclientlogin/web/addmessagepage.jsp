@@ -27,70 +27,68 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                        <li class="active"><a href="mainpage.jsp">Home</a></li>
-                        <li class="dropdown">
-                            <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
-                            <ul class = "dropdown-menu">
-                              <li><a href="addmemory.jsp">New Memories</a></li>
-                              <li><a href="allmemories.jsp">All Memories</a></li>
-                              <li><a href="removeMemory.jsp">Remove Memory</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class ="dropdown-toggle" data-toggle = "dropdown">Resources <b class = "caret"></b></a>
-                            <ul class = "dropdown-menu">
-                              <li><a href="addresources.jsp">Add Resources</a></li>
-                              <li><a href="viewresources.jsp">View Resource</a></li>
-                              <li><a href="shareresources.jsp">Share Resources</a></li>
-                            </ul>
-                        </li>
-                         <li class="dropdown">
-                            <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
-                            <ul class = "dropdown-menu">
-                              <li><a href="addresources.jsp">Inbox</a></li>
-                              <li><a href="addmessagepage.jsp">Invite User</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="index.jsp">Logout</a></li>
+                            <li><a href="mainpage.jsp">Home</a></li>
+                            <li class="dropdown">
+                                <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
+                                <ul class = "dropdown-menu">
+                                  <li><a href="addMemory.jsp">New Memories</a></li>
+                                  <li><a href="#">All Memories</a></li>
+                                  <li><a href="removeMemory.jsp">Remove Memory</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class ="dropdown-toggle" data-toggle = "dropdown">Resources <b class = "caret"></b></a>
+                                <ul class = "dropdown-menu">
+                                  <li><a href="addresources.jsp">Add Resources</a></li>
+                                  <li><a href="viewresources.jsp">View Resource</a></li>
+                                  <li><a href="shareresources.jsp">Share Resources</a></li>
+                                </ul>
+                            </li>
+                             <li class="dropdown active">
+                                <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
+                                <ul class = "dropdown-menu">
+                                  <li><a href=#">Inbox</a></li>
+                                  <li><a href="addmessagepage.jsp">Invite User</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="index.jsp">Logout</a></li>
                         </ul>
                     </div>
                 </div>
         </div>
             <div class="content">
                 <div class = "login_table">
-            <div class="login_heading">
-            <h1 class="col-sm-10 login_h1">Send Message</h1>
-        </div>
-            <form class="form-horizontal"action="addmessage.jsp" method="post" role="form">
-                <div class="form-group">
-                  <div class=" col-sm-10">
-                    <input type="text" class="form-control input-lg"  name="usename" placeholder="Enter your name">
-                  </div>
+                    <div class="login_heading">
+                        <h1 class="col-sm-10 login_h1">Send Message</h1>
+                    </div>
+                    <form class="form-horizontal"action="addmessage.jsp" method="post" role="form">
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"  name="usename" placeholder="Enter your name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"   name="memnam"placeholder="Enter Your Message Name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"   name="memdesc"placeholder="Enter Your Message">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"   name="useid"placeholder="Enter the userId of receiver">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                          </div>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                  <div class=" col-sm-10">
-                    <input type="text" class="form-control input-lg"   name="memnam"placeholder="Enter Your Message Name">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class=" col-sm-10">
-                    <input type="text" class="form-control input-lg"   name="memdesc"placeholder="Enter Your Message">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <div class=" col-sm-10">
-                    <input type="text" class="form-control input-lg"   name="useid"placeholder="Enter the userId of receiver">
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <div class=" col-sm-10">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
-
-                  </div>
-                </div>
-            </form>
-        </div>
             </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

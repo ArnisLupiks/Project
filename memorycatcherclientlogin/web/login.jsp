@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+    
     <%-- start web service invocation --%><hr/>
     <%
         String name = request.getParameter("usr");

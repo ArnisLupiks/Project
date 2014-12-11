@@ -8,6 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
           <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
@@ -15,11 +17,10 @@ rel="stylesheet" type="text/css" />
         <link href="css/styling.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-       
         <div class = "login_table">
             <div class="login_heading">
-            <h1 class="col-sm-10 login_h1">Register Page</h1>
-        </div>
+                <h1 class="col-sm-10 login_h1">Register Page</h1>
+            </div>
             <form class="form-horizontal"action="register.jsp" method ="post" role="form">
                 <div class="form-group">
                   <div class=" col-sm-10">

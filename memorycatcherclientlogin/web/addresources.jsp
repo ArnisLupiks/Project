@@ -31,8 +31,8 @@
                         <li class="dropdown">
                             <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
                             <ul class = "dropdown-menu">
-                              <li><a href="addmemory.jsp">New Memories</a></li>
-                              <li><a href="allmemories.jsp">All Memories</a></li>
+                              <li><a href="addMemory.jsp">New Memories</a></li>
+                              <li><a href="#">All Memories</a></li>
                               <li><a href="removeMemory.jsp">Remove Memory</a></li>
                             </ul>
                         </li>
@@ -42,6 +42,13 @@
                               <li><a href="addresources.jsp">Add Resources</a></li>
                               <li><a href="viewresources.jsp">View Resource</a></li>
                               <li><a href="shareresources.jsp">Share Resources</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
+                            <ul class = "dropdown-menu">
+                              <li><a href=#">Inbox</a></li>
+                              <li><a href="addmessagepage.jsp">Invite User</a></li>
                             </ul>
                         </li>
                         <li><a href="index.jsp">Logout</a></li>

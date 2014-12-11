@@ -13,13 +13,60 @@
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"rel="stylesheet" type="text/css" />
         <link href="css/styling.css" rel="stylesheet" type="text/css"/>
         <title>Memory Catcher</title>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<style> img{height:200px; float: center; padding-left: 50px;}
-                h1{padding-left: 20px;}    
-        
-        
-        </style>
-	<script>
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Memory Catcher</a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="mainpage.jsp">Home</a></li>
+                            <li class="dropdown">
+                                <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
+                                <ul class = "dropdown-menu">
+                                  <li><a href="addMemory.jsp">New Memories</a></li>
+                                  <li><a href="#">All Memories</a></li>
+                                  <li><a href="removeMemory.jsp">Remove Memory</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class ="dropdown-toggle" data-toggle = "dropdown">Resources <b class = "caret"></b></a>
+                                <ul class = "dropdown-menu">
+                                  <li><a href="addresources.jsp">Add Resources</a></li>
+                                  <li><a href="viewresources.jsp">View Resource</a></li>
+                                  <li><a href="shareresources.jsp">Share Resources</a></li>
+                                </ul>
+                            </li>
+                             <li class="dropdown">
+                                <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
+                                <ul class = "dropdown-menu">
+                                  <li><a href="#">Inbox</a></li>
+                                  <li><a href="addmessagepage.jsp">Invite User</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="index.jsp">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+        </div>
+            <div class="content">
+                <h1>Welcome to the memory catcher. Share some of your memories with your friends</h1>
+               
+         
+                <input type="button" id = "button" value="get pics!" >
+                <div id="images"></div>
+                
+            </div>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        <script>
 		$(document).ready(function(){
 		
 			$("#button").click(function(){
@@ -40,59 +87,5 @@
 	});
 
 	</script>
-        
-    </head>
-    <body>
-        <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Memory Catcher</a>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                        <li class="active"><a href="mainpage.jsp">Home</a></li>
-                        <li class="dropdown">
-                            <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
-                            <ul class = "dropdown-menu">
-                              <li><a href="addmemory.jsp">New Memories</a></li>
-                              <li><a href="allmemories.jsp">All Memories</a></li>
-                              <li><a href="removeMemory.jsp">Remove Memory</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a class ="dropdown-toggle" data-toggle = "dropdown">Resources <b class = "caret"></b></a>
-                            <ul class = "dropdown-menu">
-                              <li><a href="addresources.jsp">Add Resources</a></li>
-                              <li><a href="viewresources.jsp">View Resource</a></li>
-                              <li><a href="shareresources.jsp">Share Resources</a></li>
-                            </ul>
-                        </li>
-                         <li class="dropdown">
-                            <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
-                            <ul class = "dropdown-menu">
-                              <li><a href="addresources.jsp">Inbox</a></li>
-                              <li><a href="addmessagepage.jsp">Invite User</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="index.jsp">Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
-        </div>
-            <div class="content">
-                <h1>Welcome to the memory catcher. Share some of your memories with your friends</h1>
-               
-         
-                <input type="button" id = "button" value="get pics!" /><p>
-                <div id="images"></div>
-                
-            </div>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     </body>
 </html>
