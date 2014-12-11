@@ -4,6 +4,10 @@
 
 <xs:element name="addMemoryResponse" type="tns:addMemoryResponse"/>
 
+<xs:element name="addMessage" type="tns:addMessage"/>
+
+<xs:element name="addMessageResponse" type="tns:addMessageResponse"/>
+
 <xs:element name="addResources" type="tns:addResources"/>
 
 <xs:element name="addResourcesResponse" type="tns:addResourcesResponse"/>
@@ -86,6 +90,21 @@
 </xs:complexType>
 
 <xs:complexType name="shareResourcesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addMessage">
+<xs:sequence>
+<xs:element name="sender" type="xs:string" minOccurs="0"/>
+<xs:element name="messageName" type="xs:string" minOccurs="0"/>
+<xs:element name="messageContent" type="xs:string" minOccurs="0"/>
+<xs:element name="receiver" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="addMessageResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
 </xs:sequence>

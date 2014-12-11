@@ -13,34 +13,6 @@
         <link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"rel="stylesheet" type="text/css" />
         <link href="css/styling.css" rel="stylesheet" type="text/css"/>
         <title>Memory Catcher</title>
-        <script src="http://code.jquery.com/jquery-latest.js"></script>
-	<style> img{height:200px; float: center; padding-left: 50px;}
-                h1{padding-left: 20px;}    
-        
-        
-        </style>
-	<script>
-		$(document).ready(function(){
-		
-			$("#button").click(function(){
-			$("#images").empty();
-				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-			{
-				tags: "snow",
-				tagmode:"any",
-				format: "json"
-			}, function(data){
-				$.each(data.items, function(i,item){
-					$('<img/>').attr("src", item.media.m).appendTo('#images');
-					if(i==3) return false;
-				});
-			});
-			
-		});
-	});
-
-	</script>
-        
     </head>
     <body>
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -85,12 +57,40 @@
                 </div>
         </div>
             <div class="content">
-                <h1>Welcome to the memory catcher. Share some of your memories with your friends</h1>
-               
-         
-                <input type="button" id = "button" value="get pics!" /><p>
-                <div id="images"></div>
-                
+                <div class = "login_table">
+            <div class="login_heading">
+            <h1 class="col-sm-10 login_h1">Send Message</h1>
+        </div>
+            <form class="form-horizontal"action="addmessage.jsp" method="post" role="form">
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <input type="text" class="form-control input-lg"  name="usename" placeholder="Enter your name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <input type="text" class="form-control input-lg"   name="memnam"placeholder="Enter Your Message Name">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <input type="text" class="form-control input-lg"   name="memdesc"placeholder="Enter Your Message">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <input type="text" class="form-control input-lg"   name="useid"placeholder="Enter the userId of receiver">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <div class=" col-sm-10">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+
+                  </div>
+                </div>
+            </form>
+        </div>
             </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

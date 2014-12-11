@@ -22,17 +22,11 @@
 <message name="addResourcesResponse">
 <part name="parameters" element="tns:addResourcesResponse"/>
 </message>
-<message name="shareResources">
-<part name="parameters" element="tns:shareResources"/>
+<message name="addMessage">
+<part name="parameters" element="tns:addMessage"/>
 </message>
-<message name="shareResourcesResponse">
-<part name="parameters" element="tns:shareResourcesResponse"/>
-</message>
-<message name="viewResources">
-<part name="parameters" element="tns:viewResources"/>
-</message>
-<message name="viewResourcesResponse">
-<part name="parameters" element="tns:viewResourcesResponse"/>
+<message name="addMessageResponse">
+<part name="parameters" element="tns:addMessageResponse"/>
 </message>
 <message name="removeMemory">
 <part name="parameters" element="tns:removeMemory"/>
@@ -40,11 +34,23 @@
 <message name="removeMemoryResponse">
 <part name="parameters" element="tns:removeMemoryResponse"/>
 </message>
+<message name="shareResources">
+<part name="parameters" element="tns:shareResources"/>
+</message>
+<message name="shareResourcesResponse">
+<part name="parameters" element="tns:shareResourcesResponse"/>
+</message>
 <message name="addMemory">
 <part name="parameters" element="tns:addMemory"/>
 </message>
 <message name="addMemoryResponse">
 <part name="parameters" element="tns:addMemoryResponse"/>
+</message>
+<message name="viewResources">
+<part name="parameters" element="tns:viewResources"/>
+</message>
+<message name="viewResourcesResponse">
+<part name="parameters" element="tns:viewResourcesResponse"/>
 </message>
 <portType name="memorycatcherclient">
 <operation name="register">
@@ -59,21 +65,25 @@
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/addResourcesRequest" message="tns:addResources"/>
 <output wsam:Action="http://memorycatcherclient/memorycatcherclient/addResourcesResponse" message="tns:addResourcesResponse"/>
 </operation>
-<operation name="shareResources">
-<input wsam:Action="http://memorycatcherclient/memorycatcherclient/shareResourcesRequest" message="tns:shareResources"/>
-<output wsam:Action="http://memorycatcherclient/memorycatcherclient/shareResourcesResponse" message="tns:shareResourcesResponse"/>
-</operation>
-<operation name="viewResources">
-<input wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesRequest" message="tns:viewResources"/>
-<output wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesResponse" message="tns:viewResourcesResponse"/>
+<operation name="addMessage">
+<input wsam:Action="http://memorycatcherclient/memorycatcherclient/addMessageRequest" message="tns:addMessage"/>
+<output wsam:Action="http://memorycatcherclient/memorycatcherclient/addMessageResponse" message="tns:addMessageResponse"/>
 </operation>
 <operation name="removeMemory">
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/removeMemoryRequest" message="tns:removeMemory"/>
 <output wsam:Action="http://memorycatcherclient/memorycatcherclient/removeMemoryResponse" message="tns:removeMemoryResponse"/>
 </operation>
+<operation name="shareResources">
+<input wsam:Action="http://memorycatcherclient/memorycatcherclient/shareResourcesRequest" message="tns:shareResources"/>
+<output wsam:Action="http://memorycatcherclient/memorycatcherclient/shareResourcesResponse" message="tns:shareResourcesResponse"/>
+</operation>
 <operation name="addMemory">
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/addMemoryRequest" message="tns:addMemory"/>
 <output wsam:Action="http://memorycatcherclient/memorycatcherclient/addMemoryResponse" message="tns:addMemoryResponse"/>
+</operation>
+<operation name="viewResources">
+<input wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesRequest" message="tns:viewResources"/>
+<output wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesResponse" message="tns:viewResourcesResponse"/>
 </operation>
 </portType>
 <binding name="memorycatcherclientPortBinding" type="tns:memorycatcherclient">
@@ -105,16 +115,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="shareResources">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
-<operation name="viewResources">
+<operation name="addMessage">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -132,7 +133,25 @@
 <soap:body use="literal"/>
 </output>
 </operation>
+<operation name="shareResources">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
 <operation name="addMemory">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="viewResources">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
