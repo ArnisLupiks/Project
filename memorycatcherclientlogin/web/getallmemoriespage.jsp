@@ -32,7 +32,7 @@
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
                                   <li><a href="addMemory.jsp">New Memories</a></li>
-                                  <li><a href="getallmemoriespage.jsp">All Memories</a></li>
+                                  <li><a href="getallmemories.jsp">All Memories</a></li>
                                   <li><a href="removeMemory.jsp">Remove Memory</a></li>
                                 </ul>
                             </li>
@@ -56,24 +56,40 @@
                     </div>
                 </div>
         </div>
+        
+                        
             <div class="content">
-                <h1>Welcome to the memory catcher. Share some of your memories with your friends</h1>
-               
-         
-                <input type="button" id = "button" value="get pics!" >
-                <div id="images"></div>
+               <div class = "login_table">
+                    <div class="login_heading">
+                        <h1 class="col-sm-10 login_h1"></h1>
+                    </div>
+                    <form class="form-horizontal"action="getallmemories.jsp" method="post" role="form">
+                       
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">View memories you have</button>
+                            <button type="button" id = "button" value="get pics!" class="btn btn-primary btn-lg btn-block" >Get Pictures</button>
+                        </div>
+                          
+                    </form>
+        
+             
                 
+            </div>
+                         
+  </div> 
+                <div id="images"></div>
             </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script>
+          <script>
 		$(document).ready(function(){
 		
 			$("#button").click(function(){
 			$("#images").empty();
 				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
 			{
-				tags: "snow",
+				tags: "summer holidays",
 				tagmode:"any",
 				format: "json"
 			}, function(data){
@@ -87,5 +103,6 @@
 	});
 
 	</script>
+     
     </body>
 </html>

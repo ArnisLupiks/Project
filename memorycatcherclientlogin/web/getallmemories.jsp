@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addmessage
-    Created on : 11-Dec-2014, 19:36:21
+    Document   : getallmemories
+    Created on : 12-Dec-2014, 13:19:40
     Author     : Barry
 --%>
 
@@ -11,28 +11,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    
     <body>
         
     <%-- start web service invocation --%><hr/>
     <%
-        String Name = request.getParameter("usename");
-        String sname = request.getParameter("memnam");
-        String mesdes = request.getParameter("memdesc");
-        String ids = request.getParameter("useid");
-        
-        int Ida = Integer.parseInt(ids);
     try {
 	memorycatcherclient.Memorycatcherclient_Service service = new memorycatcherclient.Memorycatcherclient_Service();
 	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
-	 // TODO initialize WS operation arguments here
-	java.lang.String sender = Name;
-	java.lang.String messageName = sname;
-	java.lang.String messageContent = mesdes;
-	java.lang.String receiver = ids;
 	// TODO process result here
-	int result = port.addMessage(sender, messageName, messageContent, receiver);
-        request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
+	java.util.List<java.lang.Object> result = port.getAllMemories();
 	out.println("Result = "+result);
     } catch (Exception ex) {
 	// TODO handle custom exceptions here

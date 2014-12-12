@@ -1,7 +1,7 @@
 <%-- 
     Document   : mainpage
     Created on : 10-Dec-2014, 15:50:17
-    Author     : Arnis
+    Author     : Barry
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -27,12 +27,12 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="mainpage.jsp">Home</a></li>
+                            <li><a href="mainpage.jsp">Home</a></li>
                             <li class="dropdown">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
                                   <li><a href="addMemory.jsp">New Memories</a></li>
-                                  <li><a href="getallmemoriespage.jsp">All Memories</a></li>
+                                  <li><a href="#">All Memories</a></li>
                                   <li><a href="removeMemory.jsp">Remove Memory</a></li>
                                 </ul>
                             </li>
@@ -44,10 +44,10 @@
                                   <li><a href="shareresources.jsp">Share Resources</a></li>
                                 </ul>
                             </li>
-                             <li class="dropdown">
+                             <li class="dropdown active">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
-                                  <li><a href="#">Inbox</a></li>
+                                  <li><a href=#">Inbox</a></li>
                                   <li><a href="addmessagepage.jsp">Invite User</a></li>
                                 </ul>
                             </li>
@@ -57,35 +57,40 @@
                 </div>
         </div>
             <div class="content">
-                <h1>Welcome to the memory catcher. Share some of your memories with your friends</h1>
-               
-         
-                <input type="button" id = "button" value="get pics!" >
-                <div id="images"></div>
-                
+                <div class = "login_table">
+                    <div class="login_heading">
+                        <h1 class="col-sm-10 login_h1">Inbox</h1>
+                    </div>
+                    <form class="form-horizontal"action="getallmessage.jsp" method="post" role="form">
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"  name="usename" placeholder="Enter your name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"   name="memnam"placeholder="Enter Your Message Name">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"   name="memdesc"placeholder="Enter Your Message">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"   name="useid"placeholder="Enter the userId of receiver">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class=" col-sm-10">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">Send</button>
+                          </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script>
-		$(document).ready(function(){
-		
-			$("#button").click(function(){
-			$("#images").empty();
-				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-			{
-				tags: "snow",
-				tagmode:"any",
-				format: "json"
-			}, function(data){
-				$.each(data.items, function(i,item){
-					$('<img/>').attr("src", item.media.m).appendTo('#images');
-					if(i==3) return false;
-				});
-			});
-			
-		});
-	});
-
-	</script>
     </body>
 </html>

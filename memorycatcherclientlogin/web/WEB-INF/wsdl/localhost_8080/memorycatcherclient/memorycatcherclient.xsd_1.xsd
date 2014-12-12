@@ -12,6 +12,10 @@
 
 <xs:element name="addResourcesResponse" type="tns:addResourcesResponse"/>
 
+<xs:element name="getAllMemories" type="tns:getAllMemories"/>
+
+<xs:element name="getAllMemoriesResponse" type="tns:getAllMemoriesResponse"/>
+
 <xs:element name="login" type="tns:login"/>
 
 <xs:element name="loginResponse" type="tns:loginResponse"/>
@@ -41,6 +45,16 @@
 <xs:complexType name="addResourcesResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getAllMemories">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getAllMemoriesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:anyType" minOccurs="0" maxOccurs="unbounded"/>
 </xs:sequence>
 </xs:complexType>
 
