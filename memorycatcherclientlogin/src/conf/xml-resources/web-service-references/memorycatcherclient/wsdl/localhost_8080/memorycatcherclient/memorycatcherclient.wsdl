@@ -16,11 +16,17 @@
 <message name="loginResponse">
 <part name="parameters" element="tns:loginResponse"/>
 </message>
-<message name="viewResources">
-<part name="parameters" element="tns:viewResources"/>
+<message name="addResources">
+<part name="parameters" element="tns:addResources"/>
 </message>
-<message name="viewResourcesResponse">
-<part name="parameters" element="tns:viewResourcesResponse"/>
+<message name="addResourcesResponse">
+<part name="parameters" element="tns:addResourcesResponse"/>
+</message>
+<message name="addMessage">
+<part name="parameters" element="tns:addMessage"/>
+</message>
+<message name="addMessageResponse">
+<part name="parameters" element="tns:addMessageResponse"/>
 </message>
 <message name="shareResources">
 <part name="parameters" element="tns:shareResources"/>
@@ -34,29 +40,23 @@
 <message name="addMemoryResponse">
 <part name="parameters" element="tns:addMemoryResponse"/>
 </message>
-<message name="addResources">
-<part name="parameters" element="tns:addResources"/>
-</message>
-<message name="addResourcesResponse">
-<part name="parameters" element="tns:addResourcesResponse"/>
-</message>
 <message name="removeMemory">
 <part name="parameters" element="tns:removeMemory"/>
 </message>
 <message name="removeMemoryResponse">
 <part name="parameters" element="tns:removeMemoryResponse"/>
 </message>
+<message name="viewResources">
+<part name="parameters" element="tns:viewResources"/>
+</message>
+<message name="viewResourcesResponse">
+<part name="parameters" element="tns:viewResourcesResponse"/>
+</message>
 <message name="getAllMemories">
 <part name="parameters" element="tns:getAllMemories"/>
 </message>
 <message name="getAllMemoriesResponse">
 <part name="parameters" element="tns:getAllMemoriesResponse"/>
-</message>
-<message name="addMessage">
-<part name="parameters" element="tns:addMessage"/>
-</message>
-<message name="addMessageResponse">
-<part name="parameters" element="tns:addMessageResponse"/>
 </message>
 <portType name="memorycatcherclient">
 <operation name="register">
@@ -67,9 +67,13 @@
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/loginRequest" message="tns:login"/>
 <output wsam:Action="http://memorycatcherclient/memorycatcherclient/loginResponse" message="tns:loginResponse"/>
 </operation>
-<operation name="viewResources">
-<input wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesRequest" message="tns:viewResources"/>
-<output wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesResponse" message="tns:viewResourcesResponse"/>
+<operation name="addResources">
+<input wsam:Action="http://memorycatcherclient/memorycatcherclient/addResourcesRequest" message="tns:addResources"/>
+<output wsam:Action="http://memorycatcherclient/memorycatcherclient/addResourcesResponse" message="tns:addResourcesResponse"/>
+</operation>
+<operation name="addMessage">
+<input wsam:Action="http://memorycatcherclient/memorycatcherclient/addMessageRequest" message="tns:addMessage"/>
+<output wsam:Action="http://memorycatcherclient/memorycatcherclient/addMessageResponse" message="tns:addMessageResponse"/>
 </operation>
 <operation name="shareResources">
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/shareResourcesRequest" message="tns:shareResources"/>
@@ -79,21 +83,17 @@
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/addMemoryRequest" message="tns:addMemory"/>
 <output wsam:Action="http://memorycatcherclient/memorycatcherclient/addMemoryResponse" message="tns:addMemoryResponse"/>
 </operation>
-<operation name="addResources">
-<input wsam:Action="http://memorycatcherclient/memorycatcherclient/addResourcesRequest" message="tns:addResources"/>
-<output wsam:Action="http://memorycatcherclient/memorycatcherclient/addResourcesResponse" message="tns:addResourcesResponse"/>
-</operation>
 <operation name="removeMemory">
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/removeMemoryRequest" message="tns:removeMemory"/>
 <output wsam:Action="http://memorycatcherclient/memorycatcherclient/removeMemoryResponse" message="tns:removeMemoryResponse"/>
 </operation>
+<operation name="viewResources">
+<input wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesRequest" message="tns:viewResources"/>
+<output wsam:Action="http://memorycatcherclient/memorycatcherclient/viewResourcesResponse" message="tns:viewResourcesResponse"/>
+</operation>
 <operation name="getAllMemories">
 <input wsam:Action="http://memorycatcherclient/memorycatcherclient/getAllMemoriesRequest" message="tns:getAllMemories"/>
 <output wsam:Action="http://memorycatcherclient/memorycatcherclient/getAllMemoriesResponse" message="tns:getAllMemoriesResponse"/>
-</operation>
-<operation name="addMessage">
-<input wsam:Action="http://memorycatcherclient/memorycatcherclient/addMessageRequest" message="tns:addMessage"/>
-<output wsam:Action="http://memorycatcherclient/memorycatcherclient/addMessageResponse" message="tns:addMessageResponse"/>
 </operation>
 </portType>
 <binding name="memorycatcherclientPortBinding" type="tns:memorycatcherclient">
@@ -116,7 +116,16 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="viewResources">
+<operation name="addResources">
+<soap:operation soapAction=""/>
+<input>
+<soap:body use="literal"/>
+</input>
+<output>
+<soap:body use="literal"/>
+</output>
+</operation>
+<operation name="addMessage">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -143,15 +152,6 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="addResources">
-<soap:operation soapAction=""/>
-<input>
-<soap:body use="literal"/>
-</input>
-<output>
-<soap:body use="literal"/>
-</output>
-</operation>
 <operation name="removeMemory">
 <soap:operation soapAction=""/>
 <input>
@@ -161,7 +161,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="getAllMemories">
+<operation name="viewResources">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>
@@ -170,7 +170,7 @@
 <soap:body use="literal"/>
 </output>
 </operation>
-<operation name="addMessage">
+<operation name="getAllMemories">
 <soap:operation soapAction=""/>
 <input>
 <soap:body use="literal"/>

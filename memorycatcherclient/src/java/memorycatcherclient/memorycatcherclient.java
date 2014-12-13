@@ -11,10 +11,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import  java.util.List;
+
 
 /**
  *
@@ -47,7 +48,8 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
         private ResultSet rs;
         private PreparedStatement pst;   
         private Statement st;
-
+        
+       
     /**
      * Web service operation
      */
@@ -160,45 +162,33 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
             return addResources;
     }
 
- 
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "getAllMemories")
-           public Memory[] getAllMemories() {
-            int user = Logged;
-            List<Memory> memories = new ArrayList<Memory>();
-            try{
+    @WebMethod(operationName = "viewResources")
+    public int viewResources() {
+        try{
                  //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
-                pst = con.prepareStatement("select * from memory WHERE userID=?");  
-                //compare data betwee1n input and databse
+                pst = con.prepareStatement("SELECT * FROM resources WHERE userID=?");  
+                //compare data between input and databse
                 pst.setString(1,""+Logged);
                 rs = pst.executeQuery();
-                
-                Memory aMemory;
-                //if loggin succeed do:
-                while(rs.next()){
-                    int userID = rs.getInt("userID");
-                    int memoryID = rs.getInt("memoryID");
-                    String memoryName = rs.getString("memoryName");
-                    //store userID in local server
-                    String memoryDescription = rs.getString("memoryDescription");
-                    aMemory = new Memory(memoryName, memoryDescription, memoryID);
-                    memories.add(aMemory);
-                    System.out.println("memoryID: '" +memoryID+ "'| memoryName: '"+memoryName+"'| memoryDescription: '"+memoryDescription+"'");
-                }    
+                if(rs.next()){
+                    int userI = rs.getInt("userID");
+                    allResources = rs.getInt("resources");
+                    System.out.println("memoryID: '" +userI+ "'| Resources: '"+allResources);
+                    return allResources;
+                } else{
+                    return allResources;
+                }   
             }catch(Exception e){
                 System.out.println("Got an exception in Get Memories" +e);
             }
-            //TODO memories to Memory[];
-            Memory[] allMemories = new Memory[memories.size()];
-            allMemories = memories.toArray(allMemories);
-             return allMemories;
-        
-        }
+             return allResources;
+        } 
 
     /**
      * Web service operation
@@ -362,33 +352,50 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
                     return -1;
     }
 
+         class Memory { 
+             String name; 
+             String description;
+             long id;
+  }; 
     /**
      * Web service operation
      */
-    @WebMethod(operationName = "viewResources")
-    public int viewResources() {
-        try{
-          //connects to database
+    @WebMethod(operationName = "getAllMemories")
+    public ArrayList getAllMemories() {
+         int user = Logged;
+          ArrayList<Memory> memories = new ArrayList<Memory>();    
+            try{
+                 //connects to database
                 Class.forName("com.mysql.jdbc.Driver");
                 Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
                 st = con.createStatement(); 
-                pst = con.prepareStatement("SELECT * FROM resources WHERE userID=?");  
+                pst = con.prepareStatement("select * from memory WHERE userID=?");  
                 //compare data between input and databse
                 pst.setString(1,""+Logged);
                 rs = pst.executeQuery();
-                if(rs.next()){
-                    int userI = rs.getInt("userID");
-                    allResources = rs.getInt("resources");
-                    System.out.println("memoryID: '" +userI+ "'| Resources: '"+allResources);
-                    return allResources;
-                } else{
-                    return allResources;
-                }   
+                
+                Memory aMemory;
+                //if loggin succeed do:
+                while(rs.next()){
+                    int userID = rs.getInt("userID");
+                    int memoryID = rs.getInt("memoryID");
+                    String memoryName = rs.getString("memoryName");
+                    //store userID in local server
+                    String memoryDescription = rs.getString("memoryDescription");
+                    aMemory = new Memory();
+                    memories.add(aMemory);
+                    System.out.println("memoryID: '" +memoryID+ "'| memoryName: '"+memoryName+"'| memoryDescription: '"+memoryDescription+"'");
+                }    
             }catch(Exception e){
                 System.out.println("Got an exception in Get Memories" +e);
             }
-             return allResources;
+            //TODO memories to Memory[];
+            Memory[] allMemories = new Memory[memories.size()];
+            allMemories = memories.toArray(allMemories);
+          return memories;
+        
     }
-}
+       
+ }
     
 
