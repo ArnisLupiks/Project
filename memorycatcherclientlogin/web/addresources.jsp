@@ -32,7 +32,7 @@
                             <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
                             <ul class = "dropdown-menu">
                               <li><a href="addMemory.jsp">New Memories</a></li>
-                              <li><a href="#">All Memories</a></li>
+                              <li><a href="viewallmemory.jsp">All Memories</a></li>
                               <li><a href="removeMemory.jsp">Remove Memory</a></li>
                             </ul>
                         </li>

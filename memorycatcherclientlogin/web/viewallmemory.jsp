@@ -1,5 +1,5 @@
 <%-- 
-    Document   : mainpage
+    Document   : viewAllMemory
     Created on : 10-Dec-2014, 15:50:17
     Author     : Arnis
 --%>
@@ -27,24 +27,24 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="mainpage.jsp">Home</a></li>
-                            <li class="dropdown">
+                            <li><a href="mainpage.jsp">Home</a></li>
+                            <li class="dropdown active">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
                                   <li><a href="addMemory.jsp">New Memories</a></li>
-                                  <li><a href="viewallmemory.jsp">All Memories</a></li>
+                                  <li><a href="viewallmemory">All Memories</a></li>
                                   <li><a href="removeMemory.jsp">Remove Memory</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a class ="dropdown-toggle" data-toggle = "dropdown">Resources <b class = "caret"></b></a>
+                                <a class ="dropdown-toggle"  data-toggle = "dropdown">Resources <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
                                   <li><a href="addresources.jsp">Add Resources</a></li>
                                   <li><a href="viewresources.jsp">View Resource</a></li>
                                   <li><a href="shareresources.jsp">Share Resources</a></li>
                                 </ul>
                             </li>
-                             <li class="dropdown">
+                            <li class="dropdown">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
                                   <li><a href="#">Inbox</a></li>
@@ -56,53 +56,38 @@
                     </div>
                 </div>
         </div>
-        
-                        
-            <div class="content">
-               <div class = "login_table">
-                    <div class="login_heading">
-                        <h1 class="col-sm-10 login_h1"></h1>
-                    </div>
-                    <form class="form-horizontal"action="getallmemories.jsp" method="post" role="form">
-                       
-                        <div class="form-group">
-                          <div class=" col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">View memories you have</button>
-                            <button type="button" id = "button" value="get pics!" class="btn btn-primary btn-lg btn-block" >Get Pictures</button>
+           <div class = "login_table">
+                        <div class="login_heading">
+                            <h1 class="col-sm-10 login_h1">View All Memory</h1>
                         </div>
-                          
-                    </form>
-        
-             
-                
-            </div>
-                         
-  </div> 
-                <div id="images"></div>
-            </div>
+                        <form class="form-horizontal"action="e" method ="post" role="form">
+                            
+                            <div class="form-group">
+                              <div class=" col-sm-10">
+                                <button type="submit" class="btn btn-primary btn-lg btn-block">Remove</button>
+                              </div>
+                            </div>
+                        </form>
+           </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-          <script>
-		$(document).ready(function(){
-		
-			$("#button").click(function(){
-			$("#images").empty();
-				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
-			{
-				tags: "summer holidays",
-				tagmode:"any",
-				format: "json"
-			}, function(data){
-				$.each(data.items, function(i,item){
-					$('<img/>').attr("src", item.media.m).appendTo('#images');
-					if(i==3) return false;
-				});
-			});
-			
-		});
-	});
-
-	</script>
-     
     </body>
+       <%
+    try {
+	memorycatcherclient.Memorycatcherclient_Service service = new memorycatcherclient.Memorycatcherclient_Service();
+	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
+	// TODO process result here
+	java.util.List<memorycatcherclient.Memory> result = port.getAllMemories();
+	out.println("Result = "+result);
+       int count = result.size();
+       out.println("This much memories you have: "+count);
+     out.println(result.iterator());
+        
+    
+           
+       
+    } catch (Exception ex) {
+	// TODO handle custom exceptions here
+    }
+    %>
 </html>
