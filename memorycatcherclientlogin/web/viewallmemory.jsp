@@ -4,8 +4,12 @@
     Author     : Arnis
 --%>
 
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
 <%@page import="memorycatcherclient.Memory"%>
 <%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -34,7 +38,7 @@
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
                                   <li><a href="addMemory.jsp">New Memories</a></li>
-                                  <li><a href="viewallmemory">All Memories</a></li>
+                                  <li><a href="viewallmemory.jsp">All Memories</a></li>
                                   <li><a href="removeMemory.jsp">Remove Memory</a></li>
                                 </ul>
                             </li>
@@ -59,17 +63,15 @@
                 </div>
         </div>
            <div class = "login_table">
-                        <div class="login_heading">
-                            <h1 class="col-sm-10 login_h1">View All Memory</h1>
-                        </div>
-                        <form class="form-horizontal"action="e" method ="post" role="form">
-                            
-                            <div class="form-group">
-                              <div class=" col-sm-10">
-                                <button type="submit" class="btn btn-primary btn-lg btn-block">Remove</button>
-                              </div>
-                            </div>
-                        </form>
+                   <table>
+                        <c:forEach items="${sessionScope.result}" var="employee">
+                             <tr>
+                                 <td>Employee ID: <c:out value="${result.get(i).getId()}"/></td>
+                                 <td>Employee Pass: <c:out value="${employee.ename}"/></td>  
+                             </tr>
+                         </c:forEach>
+                     </table>
+                <div id='images'></div>
            </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -83,11 +85,23 @@
 	//out.println("Result = "+result);
        int count = result.size();
        out.println("This much memories you have: "+count);
+      
+         
        for (int i = 0; i < result.size(); i++) {
-            out.println("<div class ='login_talbe'>??????????: "+result.get(i).getId()+"</div>");
-            out.println("<div class ='login_talbe'>??????????: "+result.get(i).getName()+"</div>");
-            out.println("<div class ='login_talbe'>??????????: "+result.get(i).getDescription()+"</div>");
+           
+           out.println("<div class = 'login_table'>");
+           out.println("<table style ='form-horizontal widht:100%'"+"<ul>");
+            
+        
+           
+            out.println("<li>Memory ID: "+result.get(i).getId()+"</li>");
 
+            out.println("<li>Memory Name: "+result.get(i).getName()+"</li>");
+            out.println("<li><div id='images'></div></li>");
+            out.println("<li>Memory Content: "+result.get(i).getDescription()+"</li>");
+            out.println("</ul>"+"</table>");
+
+            out.println("</div>");
         }
      
            
@@ -96,4 +110,26 @@
 	// TODO handle custom exceptions here
     }
     %>
+    <script>
+		$(document).ready(function(){
+		
+                   
+                            console.log( "ready!" );
+			$("images").empty();
+				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+			{
+				tags:"snow",
+				tagmode:"any",
+				format: "json"
+			}, function(data){
+				$.each(data.items, function(i,item){
+					$('<img/>').attr("src", item.media.m).appendTo('#images');
+					if(i==0) return false;
+				});
+			});
+			
+		});
+       
+
+	</script>
 </html>
