@@ -4,6 +4,8 @@
     Author     : Arnis
 --%>
 
+<%@page import="memorycatcherclient.Memory"%>
+<%@page import="java.util.Iterator"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -78,12 +80,16 @@
 	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
 	// TODO process result here
 	java.util.List<memorycatcherclient.Memory> result = port.getAllMemories();
-	out.println("Result = "+result);
+	//out.println("Result = "+result);
        int count = result.size();
        out.println("This much memories you have: "+count);
-     out.println(result.iterator());
-        
-    
+       for (int i = 0; i < result.size(); i++) {
+            out.println("<div class ='login_talbe'>??????????: "+result.get(i).getId()+"</div>");
+            out.println("<div class ='login_talbe'>??????????: "+result.get(i).getName()+"</div>");
+            out.println("<div class ='login_talbe'>??????????: "+result.get(i).getDescription()+"</div>");
+
+        }
+     
            
        
     } catch (Exception ex) {

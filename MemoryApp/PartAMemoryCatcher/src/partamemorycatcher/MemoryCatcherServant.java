@@ -33,7 +33,6 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
         private Statement st;
 //******Login to application****************************************************
 	public int login(String username, String password){
-        
         Logged =-1;
              try{
                 //make connection to d0atabase
@@ -102,7 +101,6 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
             }
             return register;
         }
-
 //****** Add Memory **************************************************************
 	public int addMemory(String memoryName, String memoryDescription){
             int userIDs = Logged;

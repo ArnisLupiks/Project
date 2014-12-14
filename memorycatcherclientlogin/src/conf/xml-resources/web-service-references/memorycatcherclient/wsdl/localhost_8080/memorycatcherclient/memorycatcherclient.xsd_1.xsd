@@ -117,16 +117,6 @@
 </xs:sequence>
 </xs:complexType>
 
-<xs:complexType name="viewResources">
-<xs:sequence/>
-</xs:complexType>
-
-<xs:complexType name="viewResourcesResponse">
-<xs:sequence>
-<xs:element name="return" type="xs:int"/>
-</xs:sequence>
-</xs:complexType>
-
 <xs:complexType name="addMessage">
 <xs:sequence>
 <xs:element name="sender" type="xs:string" minOccurs="0"/>
@@ -137,6 +127,16 @@
 </xs:complexType>
 
 <xs:complexType name="addMessageResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="viewResources">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="viewResourcesResponse">
 <xs:sequence>
 <xs:element name="return" type="xs:int"/>
 </xs:sequence>

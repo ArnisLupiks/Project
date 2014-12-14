@@ -35,7 +35,6 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
             this.username = username;
           }
         }
-        
         User loggedInUser = null;
         int Logged = -1;   
         int memoryID = -1;
