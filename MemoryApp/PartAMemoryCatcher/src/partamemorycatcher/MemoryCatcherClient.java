@@ -3,7 +3,7 @@ import MemoryCatcherApp.Memory;
 import MemoryCatcherApp.MemoryCatcherHelper; // The package containing generated stubs.
 import MemoryCatcherApp.MemoryCatcher;
 import MemoryCatcherApp.Message;
-import MemoryCatcherApp.Resources;
+import MemoryCatcherApp.*;
 import org.omg.CORBA.*; // All CORBA
 // needed for output to the file system.
 import java.io.*;
@@ -95,7 +95,7 @@ public class MemoryCatcherClient {
                                                                     System.out.println("Failed to delete memory " + memoryID);
                                                                 }           
                                                             }
-                                                        }while(menuChoice !=(char)'4');
+                                                        }while(menuChoice !=(char)'5');
                                                     }catch(Exception e){
                                                         System.out.println("memory menu is broken: "+e);
                                                     }
@@ -130,11 +130,10 @@ public class MemoryCatcherClient {
                                                                 String amount = userEntry.readLine();
                                                                 int resources = Integer.parseInt(amount);
                                                                 int addResources = memorycatcherRef.shareResources(resources, user);
-                                                            } 
-                                                        }while (menuChoice != (char)'4');
-                                                        }
-                                                        catch(Exception e){
-                                                        System.out.println("Systems is broken: "+e);
+                                                            }  
+                                                        }while(menuChoice!= (char)'4');                                                       
+                                                        }catch(Exception e){
+                                                            System.out.println("Systems is broken: "+e);
                                                         }
                                                     }else if (menuChoice==(char)'3') {
                                                         //Messages
@@ -147,15 +146,13 @@ public class MemoryCatcherClient {
                                                                 if (menuChoice==(char)'1') {
                                                                 //This is the invite to user to see holiday moments    
                                                                 System.out.println("----------------------------------------------------");
-                                                                System.out.println("Please type your username:");
-                                                                String sender = userEntry.readLine();
+                                                                System.out.println("Please enter Username of who you want to send Message");
+                                                                String receiver = userEntry.readLine();
                                                                 System.out.println("Please type your message name");
                                                                 String messageName = userEntry.readLine();
                                                                 System.out.println("Please type your message");
                                                                 String messageContent  = userEntry.readLine();
-                                                                System.out.println("Please enter userID of who you want to invite");
-                                                                String receiver = userEntry.readLine();
-                                                                int addMessage = memorycatcherRef.addMessage(sender, messageName, messageContent, receiver);
+                                                                int addMessage = memorycatcherRef.addMessage(messageName, messageContent, receiver);
                                                                 }else if (menuChoice==(char)'2'){
                                                                 //This is the user inbox    
                                                                 System.out.println("----------------------------------------------------");
@@ -171,7 +168,7 @@ public class MemoryCatcherClient {
                                                             }
                                                             catch(Exception e){
                                                             System.out.println("Systems is broken: "+e);
-                                                        }
+                                                            }
                                                     }
                                             }while(menuChoice != (char)'4');
                                         }

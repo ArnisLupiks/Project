@@ -10,6 +10,7 @@
 <%@page import="memorycatcherclient.Memory"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -64,14 +65,9 @@
         </div>
            <div class = "login_table">
                    <table>
-                        <c:forEach items="${sessionScope.result}" var="employee">
-                             <tr>
-                                 <td>Employee ID: <c:out value="${result.get(i).getId()}"/></td>
-                                 <td>Employee Pass: <c:out value="${employee.ename}"/></td>  
-                             </tr>
-                         </c:forEach>
+                        
                      </table>
-                <div id='images'></div>
+                <span id='images'></span>
            </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -84,24 +80,24 @@
 	java.util.List<memorycatcherclient.Memory> result = port.getAllMemories();
 	//out.println("Result = "+result);
        int count = result.size();
-       out.println("This much memories you have: "+count);
+       //out.println("This much memories you have: "+count);
       
          
        for (int i = 0; i < result.size(); i++) {
            
-           out.println("<div class = 'login_table'>");
-           out.println("<table style ='form-horizontal widht:100%'"+"<ul>");
+           out.write("<div class = 'login_table'>");
+           out.write("<table style ='form-horizontal widht:100%'"+"<ul>");
             
         
            
-            out.println("<li>Memory ID: "+result.get(i).getId()+"</li>");
+            out.write("<li>Memory ID: "+result.get(i).getId()+"</li>");
 
-            out.println("<li>Memory Name: "+result.get(i).getName()+"</li>");
-            out.println("<li><div id='images'></div></li>");
-            out.println("<li>Memory Content: "+result.get(i).getDescription()+"</li>");
-            out.println("</ul>"+"</table>");
+            out.write("<li>Memory Name: "+result.get(i).getName()+"</li>");
+            out.write("<li><span id='images'></span></li>");
+            out.write("<li>Memory Content: "+result.get(i).getDescription()+"</li>");
+            out.write("</ul>"+"</table>");
 
-            out.println("</div>");
+            out.write("</div>");
         }
      
            
@@ -115,7 +111,7 @@
 		
                    
                             console.log( "ready!" );
-			$("images").empty();
+			$("#images").empty();
 				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
 			{
 				tags:"snow",
