@@ -25,7 +25,7 @@
 	int memoryID = Ida;
 	// TODO process result here
 	boolean result = port.removeMemory(memoryID);
-	          request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
+	          request.getRequestDispatcher("/viewallmemory.jsp").forward(request, response);
 
     } catch (Exception ex) {
 	// TODO handle custom exceptions here

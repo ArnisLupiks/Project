@@ -30,7 +30,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Memory Catcher</a>
+                        <a class="navbar-brand" href="mainpage.jsp">Memory Catcher</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
@@ -78,26 +78,15 @@
 	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
 	// TODO process result here
 	java.util.List<memorycatcherclient.Message> result = port.getAllMessages();
-	//out.println("Result = "+result);
-        
         int count = result.size();
-       //out.println("This much memories you have: "+count);
-      
-         
-       for (int i = 0; i < result.size(); i++) {
-           
+        for (int i = 0; i < result.size(); i++) {
            out.write("<div class = 'login_table'>");
            out.write("<table style ='form-horizontal widht:100%'"+"<ul>");
-            
-        
-           
-            out.write("<li>Message from: "+result.get(i).getSender()+"</li>");
-
-            out.write("<li>Message heading: "+result.get(i).getName()+"</li>");
-            out.write("<li>Message content: "+result.get(i).getContent()+"</li>");
-            out.write("<li><span id='images'></span></li>");
+            out.write("<li class = 'noelipsis'>Message from: "+result.get(i).getSender()+"</li>");
+            out.write("<li class = 'noelipsis'>Message heading: "+result.get(i).getName()+"</li>");
+            out.write("<li class = 'noelipsis'>Message content: "+result.get(i).getContent()+"</li>");
+            out.write("<li class = 'noelipsis'><span id='images'></span></li>");
             out.write("</ul>"+"</table>");
-
             out.write("</div>");
         }
         

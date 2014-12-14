@@ -16,7 +16,7 @@ rel="stylesheet" type="text/css" />
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Memory Catcher</a>
+                        <a class="navbar-brand" href="mainpage.jsp">Memory Catcher</a>
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">

@@ -27,4 +27,16 @@ div.content{
     padding-top: 100px;
 }
 img{height:150px; float: center; padding-left: 50px;}
-                h1{padding-left: 20px;}
+     h1{padding-left: 20px;}
+   .noelipsis{
+       
+	list-style-type:none;
+
+     }
+     
+     .message_table{
+         padding-top: 10px;
+          margin-left: auto;
+    margin-right: auto;
+     width: 500px;
+     }

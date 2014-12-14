@@ -75,5 +75,37 @@
            </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <%-- start web service invocation --%><hr/>
+    <%
+    try {
+	memorycatcherclient.Memorycatcherclient_Service service = new memorycatcherclient.Memorycatcherclient_Service();
+	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
+	// TODO process result here
+	java.util.List<memorycatcherclient.Memory> result = port.getAllMemories();
+	 int count = result.size();
+       //out.println("This much memories you have: "+count);
+      
+         
+       for (int i = 0; i < result.size(); i++) {
+           
+           out.write("<div class = 'message_table'>");
+           out.write("<table style ='form-horizontal widht:100%'"+"<ul>");
+            
+        
+           
+            out.write("<li class = 'noelipsis'>Memory ID: "+result.get(i).getId()+"</li>");
+
+            out.write("<li class = 'noelipsis'>Memory Name: "+result.get(i).getName()+"</li>");
+            out.write("<li class = 'noelipsis'><div id='images'></div></li>");
+            out.write("</ul>"+"</table>");
+
+            out.write("</div>");
+        }
+     
+    } catch (Exception ex) {
+	// TODO handle custom exceptions here
+    }
+    %>
+    <%-- end web service invocation --%><hr/>
     </body>
 </html>
