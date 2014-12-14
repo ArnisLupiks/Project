@@ -119,7 +119,6 @@
 
 <xs:complexType name="addMessage">
 <xs:sequence>
-<xs:element name="sender" type="xs:string" minOccurs="0"/>
 <xs:element name="messageName" type="xs:string" minOccurs="0"/>
 <xs:element name="messageContent" type="xs:string" minOccurs="0"/>
 <xs:element name="receiver" type="xs:string" minOccurs="0"/>

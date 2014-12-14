@@ -140,7 +140,7 @@ public class MemoryCatcherClient {
                                                         try{
                                                             do{
                                                                 System.out.println("----------------------------------------------------");
-                                                                System.out.println("1 Invite User; 2 Inbox; 3 back.");
+                                                                System.out.println("1 Send Message; 2 Inbox; 3 back.");
                                                                 menuChoice = (char)(System.in.read());
                                                                 userEntry.readLine(); //Need to clear the out the buffer
                                                                 if (menuChoice==(char)'1') {

@@ -62,11 +62,11 @@
                         <h1 class="col-sm-10 login_h1">Send Message</h1>
                     </div>
                     <form class="form-horizontal"action="addmessage.jsp" method="post" role="form">
-                        <div class="form-group">
-                          <div class=" col-sm-10">
-                            <input type="text" class="form-control input-lg"  name="usename" placeholder="Enter your name">
+                         <div class="form-group">    
+                        <div class=" col-sm-10">
+                            <input type="text" class="form-control input-lg"   name="useid"placeholder="Enter receiver name">
                           </div>
-                        </div>
+                         </div>
                         <div class="form-group">
                           <div class=" col-sm-10">
                             <input type="text" class="form-control input-lg"   name="memnam"placeholder="Enter Your Message Name">
@@ -75,11 +75,6 @@
                         <div class="form-group">
                           <div class=" col-sm-10">
                             <input type="text" class="form-control input-lg"   name="memdesc"placeholder="Enter Your Message">
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class=" col-sm-10">
-                            <input type="text" class="form-control input-lg"   name="useid"placeholder="Enter the userId of receiver">
                           </div>
                         </div>
                         <div class="form-group">

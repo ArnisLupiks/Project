@@ -329,30 +329,42 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
      * Web service operation
      */
     @WebMethod(operationName = "addMessage")
-    public int addMessage(@WebParam(name = "sender") String sender, @WebParam(name = "messageName") String messageName, @WebParam(name = "messageContent") String messageContent, @WebParam(name = "receiver") String receiver) {
-         sender = null;
-               if (loggedInUser != null){
-               sender = loggedInUser.username;
-               }
-               messageID = -1;
-                 try{
+    public int addMessage(@WebParam(name = "messageName") String messageName, @WebParam(name = "messageContent") String messageContent, @WebParam(name = "receiver") String receiver) {
+         messageID = -1;
+            try{
                  //connects to database
                 Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
-                st = con.createStatement();  
-                //compare data between input and databse
-                pst = con.prepareStatement("INSERT INTO `messages`(`sender`, `messageName`, `messageContent`, `receiverID`) VALUES (?,?,?,?)");
-                pst.setString(1, sender);
-                pst.setString(2, messageName);
-                pst.setString(3, messageContent);
-                pst.setString(4,receiver);
-                pst.executeUpdate();
-              if(rs.next()){
-                    //store userID in local server
-                    int messageIDs = rs.getInt("messageID");
-                    System.out.println("userID:" +messageIDs);
-                    messageID = messageIDs;
+                st = con.createStatement();
+                pst = con.prepareStatement("SELECT * FROM `users` WHERE userID=?");
+                pst.setInt(1, Logged);
+                rs = pst.executeQuery();
+                if(rs.next()){
+                   String sender = rs.getString("username");
+                    pst = con.prepareStatement("SELECT * FROM `users` WHERE username=?");
+                    pst.setString(1, receiver);
+                    rs = pst.executeQuery();
+                    if(rs.next()){
+                        //compare data between input and databse
+                        int id = rs.getInt("userID");
+                        pst = con.prepareStatement("INSERT INTO `messages`(`sender`, `messageName`, `messageContent`, `receiverID`) VALUES (?,?,?,?)");
+                        pst.setString(1, sender);
+                        pst.setString(2, messageName);
+                        pst.setString(3, messageContent);
+                        pst.setString(4,""+id);
+                        pst.executeUpdate();
+                        if(rs.next()){
+                            //store userID in local server
+                            int messageIDs = rs.getInt("messageID");
+                            System.out.println("userID:" +messageIDs);
+                            messageID = messageIDs;
+                        }else{
+                            messageID = -1;
+                        }
+                    }else{
+                        return 0;
+                    }
                 }else{
-                    messageID = -1;
+                    return 0;
                 }
          }catch(Exception e){
                 System.out.println("Got an exception in addMessage into messages" +e);

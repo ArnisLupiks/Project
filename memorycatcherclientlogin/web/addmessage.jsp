@@ -16,22 +16,17 @@
         
     <%-- start web service invocation --%><hr/>
     <%
-        String Name = request.getParameter("usename");
-        String sname = request.getParameter("memnam");
-        String mesdes = request.getParameter("memdesc");
-        String ids = request.getParameter("useid");
-        
-        int Ida = Integer.parseInt(ids);
+  
     try {
 	memorycatcherclient.Memorycatcherclient_Service service = new memorycatcherclient.Memorycatcherclient_Service();
 	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
 	 // TODO initialize WS operation arguments here
-	java.lang.String sender = Name;
-	java.lang.String messageName = sname;
-	java.lang.String messageContent = mesdes;
-	java.lang.String receiver = ids;
+	
+	java.lang.String messageName = request.getParameter("memnam");
+	java.lang.String messageContent = request.getParameter("memdesc");;
+	java.lang.String receiver = request.getParameter("useid");
 	// TODO process result here
-	int result = port.addMessage(sender, messageName, messageContent, receiver);
+	int result = port.addMessage(messageName, messageContent, receiver);
         request.getRequestDispatcher("/mainpage.jsp").forward(request, response);
 	out.println("Result = "+result);
     } catch (Exception ex) {
