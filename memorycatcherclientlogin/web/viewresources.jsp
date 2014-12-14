@@ -79,7 +79,8 @@
 	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
 	// TODO process result here
 	int result = port.viewResources();
-	out.println("Result = "+result);
+        out.println("<div class ='login_h1'>Total amount of resources you have: </div>");
+	out.println("<div class ='login_h1'>  "+result+"</div>");
                   //request.getRequestDispatcher("/viewnewresources.jsp").forward(request, response);
 
     } catch (Exception ex) {
