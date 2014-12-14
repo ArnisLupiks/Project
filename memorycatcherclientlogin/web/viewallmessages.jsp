@@ -1,8 +1,15 @@
 <%-- 
-    Document   : mainpage
-    Created on : 10-Dec-2014, 15:50:17
+    Document   : viewallmessages
+    Created on : 14-Dec-2014, 15:59:17
     Author     : Arnis
 --%>
+
+<%@page import="java.util.Collection"%>
+<%@page import="java.util.Comparator"%>
+<%@page import="java.util.Collections"%>
+
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -27,7 +34,7 @@
                     </div>
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="mainpage.jsp">Home</a></li>
+                            <li><a href="mainpage.jsp">Home</a></li>
                             <li class="dropdown">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Memories <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
@@ -37,18 +44,18 @@
                                 </ul>
                             </li>
                             <li class="dropdown">
-                                <a class ="dropdown-toggle" data-toggle = "dropdown">Resources <b class = "caret"></b></a>
+                                <a class ="dropdown-toggle"  data-toggle = "dropdown">Resources <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
                                   <li><a href="addresources.jsp">Add Resources</a></li>
                                   <li><a href="viewresources.jsp">View Resource</a></li>
                                   <li><a href="shareresources.jsp">Share Resources</a></li>
                                 </ul>
                             </li>
-                             <li class="dropdown">
+                            <li class="dropdown active">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
-                                  <li><a href="#">Inbox</a></li>
-                                  <li><a href="addmessagepage.jsp">Invite User</a></li>
+                                  <li><a href="viewallmessages.jsp">Inbox</a></li>
+                                  <li><a href="addmessagepage.jsp">Send Message</a></li>
                                 </ul>
                             </li>
                             <li><a href="index.jsp">Logout</a></li>
@@ -56,53 +63,72 @@
                     </div>
                 </div>
         </div>
-        
+           <div class = "login_table">
+                   <table>
                         
-            <div class="content">
-               <div class = "login_table">
-                    <div class="login_heading">
-                        <h1 class="col-sm-10 login_h1"></h1>
-                    </div>
-                    <form class="form-horizontal"action="getallmemories.jsp" method="post" role="form">
-                       
-                        <div class="form-group">
-                          <div class=" col-sm-10">
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">View memories you have</button>
-                            <button type="button" id = "button" value="get pics!" class="btn btn-primary btn-lg btn-block" >Get Pictures</button>
-                        </div>
-                          
-                    </form>
-        
-             
-                
-            </div>
-                         
-  </div> 
-                <div id="images"></div>
-            </div>
+                     </table>
+                <div class="content" id='images'></div>
+           </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-          <script>
+    <%-- start web service invocation --%><hr/>
+    <%
+    try {
+	memorycatcherclient.Memorycatcherclient_Service service = new memorycatcherclient.Memorycatcherclient_Service();
+	memorycatcherclient.Memorycatcherclient port = service.getMemorycatcherclientPort();
+	// TODO process result here
+	java.util.List<memorycatcherclient.Message> result = port.getAllMessages();
+	//out.println("Result = "+result);
+        
+        int count = result.size();
+       //out.println("This much memories you have: "+count);
+      
+         
+       for (int i = 0; i < result.size(); i++) {
+           
+           out.write("<div class = 'login_table'>");
+           out.write("<table style ='form-horizontal widht:100%'"+"<ul>");
+            
+        
+           
+            out.write("<li>Message from: "+result.get(i).getSender()+"</li>");
+
+            out.write("<li>Message heading: "+result.get(i).getName()+"</li>");
+            out.write("<li>Message content: "+result.get(i).getContent()+"</li>");
+            out.write("<li><span id='images'></span></li>");
+            out.write("</ul>"+"</table>");
+
+            out.write("</div>");
+        }
+        
+    } catch (Exception ex) {
+	// TODO handle custom exceptions here
+    }
+    %>
+    <%-- end web service invocation --%><hr/>
+    
+   
+    <script>
 		$(document).ready(function(){
 		
-			$("#button").click(function(){
+                   
+                            console.log( "ready!" );
 			$("#images").empty();
 				$.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
 			{
-				tags: "summer holidays",
+				tags:"envelope",
 				tagmode:"any",
 				format: "json"
 			}, function(data){
 				$.each(data.items, function(i,item){
 					$('<img/>').attr("src", item.media.m).appendTo('#images');
-					if(i==3) return false;
+					if(i==0) return false;
 				});
 			});
 			
 		});
-	});
+       
 
 	</script>
-     
-    </body>
+        </body>
 </html>

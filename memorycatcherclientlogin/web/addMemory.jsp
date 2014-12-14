@@ -40,8 +40,8 @@ rel="stylesheet" type="text/css" />
                              <li class="dropdow">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
-                                  <li><a href="#">Inbox</a></li>
-                                  <li><a href="addmessagepage.jsp">Invite User</a></li>
+                                  <li><a href="viewallmessages.jsp">Inbox</a></li>
+                                  <li><a href="addmessagepage.jsp">Send Message</a></li>
                                 </ul>
                             </li>
                         <li><a href="index.jsp">Logout</a></li>

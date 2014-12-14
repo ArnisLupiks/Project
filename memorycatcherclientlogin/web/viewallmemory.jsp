@@ -54,8 +54,8 @@
                             <li class="dropdown">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
-                                  <li><a href="#">Inbox</a></li>
-                                  <li><a href="addmessagepage.jsp">Invite User</a></li>
+                                  <li><a href="viewallmessages.jsp">Inbox</a></li>
+                                  <li><a href="addmessagepage.jsp">Send Message</a></li>
                                 </ul>
                             </li>
                             <li><a href="index.jsp">Logout</a></li>
@@ -67,7 +67,7 @@
                    <table>
                         
                      </table>
-                <span id='images'></span>
+                <div class="content" id="images"></div>
            </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

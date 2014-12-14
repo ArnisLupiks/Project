@@ -400,6 +400,47 @@ final String DATABASE_CONN = "jdbc:mysql://localhost:3306/memorycatcher";
             }
              return allResources;
     }
+
+    /**
+     * Web service operation
+     */
+    @WebMethod(operationName = "getAllMessages")
+    public Message[] getAllMessages() {
+        int user = Logged;
+            List<Message> messages = new ArrayList<Message>();
+            try{
+                 //connects to database
+                Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
+                st = con.createStatement(); 
+                pst = con.prepareStatement("select * from messages WHERE receiverID=?");  
+                //compare data between input and databse
+                pst.setString(1,""+Logged);
+                rs = pst.executeQuery();
+                
+                Message aMessage;
+                //if loggin succeed do:
+                while(rs.next()){
+                    int messageID = rs.getInt("messageID");
+                    String messageName = rs.getString("messageName");
+                    String messageContent = rs.getString("messageContent");
+                    String receiver = rs.getString("receiverID");
+                    String sender = rs.getString("sender");
+                    //store userID in local server
+                    String content = rs.getString("messageContent");
+                    aMessage = new Message(messageName, messageContent, receiver, sender, messageID);
+                    messages.add(aMessage);
+                    System.out.println("messageID: " +messageID+ " messageName: " +messageName + " messageContent: "+content + " receiver: "+receiver+  " sender: " + sender);
+                }    
+            }catch(Exception e){
+                System.out.println("Got an exception in Get Messages" +e);
+            }
+            //TODO memories to Memory[];
+            Message[] allMessages = new Message[messages.size()];
+            allMessages = messages.toArray(allMessages);
+             return allMessages;
+        
+    }
 }
+
     
 

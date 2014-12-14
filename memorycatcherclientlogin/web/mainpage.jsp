@@ -47,8 +47,8 @@
                              <li class="dropdown">
                                 <a class ="dropdown-toggle" data-toggle = "dropdown">Messages <b class = "caret"></b></a>
                                 <ul class = "dropdown-menu">
-                                  <li><a href="#">Inbox</a></li>
-                                  <li><a href="addmessagepage.jsp">Invite User</a></li>
+                                  <li><a href="viewallmessages.jsp">Inbox</a></li>
+                                  <li><a href="addmessagepage.jsp">Send Message</a></li>
                                 </ul>
                             </li>
                             <li><a href="index.jsp">Logout</a></li>
@@ -60,7 +60,7 @@
                 <h1 class ="login_h1">Welcome to the memory catcher. Share some of your memories with your friends</h1>
                
          
-                <div class = "login_h1"id="images"></div>
+                <div id="images"></div>
                 
             </div>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
