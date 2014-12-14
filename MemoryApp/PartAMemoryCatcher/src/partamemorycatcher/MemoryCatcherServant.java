@@ -386,7 +386,79 @@ public class MemoryCatcherServant extends _MemoryCatcherImplBase {
                     return -1;
     }
 
-
+                //Share Memory
+	public int shareMemory( int memoryId, String ShareUserId){
+		int shareMemory=0;
+                //String username = null;
+                //String updateMemory=null;
+                //int total=0;
+		//String memory =null;
+		
+                try{
+                    //connects to database
+                    Class.forName("com.mysql.jdbc.Driver");
+                    Connection con = DriverManager.getConnection(DATABASE_CONN,ROOT,"");
+                    st = con.createStatement();
+                    //get memoryId from memory
+                    pst = con.prepareStatement("SELECT * FROM 'memory' WHERE memoryID='"+memoryId+"'");
+                    //pst.setInt(1, Logged);
+                    rs=pst.executeQuery();
+                    if(rs.next()){
+                        //Store memory in,local server
+                        //if memoryId is empty, can delete memory
+                        if (ShareUserId.isEmpty()==false){
+                            //sender gets userId, search for username from users table
+                        int orig_userId = rs.getInt("userId");
+                        rs = pst.executeQuery();
+                        pst = con.prepareStatement("SELECT * FROM 'users' WHERE username=?");
+                        pst.setString(1, ShareUserId);
+                        rs = pst.executeQuery();
+                        if(rs.next()){
+                            // shareUserId exists
+                            int shareduserId = rs.getInt("userId");
+                            System.out.println("successful.  Shared user=" + ShareUserId + " found userid=" + shareduserId );
+                            System.out.println(" Sharing Memory Proceeding ... " );
+                            // do we need an insert or update
+                              pst = con.prepareStatement("SELECT * FROM 'sharememory' WHERE memoryId=?");
+                              pst.setInt(1, memoryId);
+                              rs = pst.executeQuery();
+                              if(rs.next())
+                              {
+                                //update row exists
+                                pst = con.prepareStatement("update 'shareMemory' set userId=?, otherUserId=? where  memoryId=? ");
+                                pst.setInt(1, orig_userId);
+                                pst.setInt(2, shareduserId);
+                                pst.setInt(3, memoryId);
+                                pst.executeUpdate();
+                                System.out.println("Share memory has been UPDATE.");
+                              }
+                              else {
+                                pst = con.prepareStatement("INSERT INTO 'shareMemory'(userId, otherUserId, memoryId) values (?, ?, ?) ");
+                                pst.setInt(1, orig_userId);
+                                pst.setInt(2, shareduserId);
+                                pst.setInt(3, memoryId);
+                                //pst.setInt(5, Logged);
+                                pst.executeUpdate();
+                                System.out.println("Share memory has been INSERTED.");
+                              }                       
+                        }   
+                    }
+                    }
+                    else {
+                                pst = con.prepareStatement("delete from  'shareMemory' where  memoryId=? ");
+                                pst.setInt(1, memoryId);
+                                //pst.setInt(5, Logged);
+                                pst.executeUpdate();
+                                System.out.println("Share memory has been UPDATE.");                                                
+                    }
+                }
+                catch(Exception e)
+                {
+                    System.out.println("You have got an Exception");
+                }
+                //Returning null for the moment
+                return shareMemory;
+        }
 }
         
   

@@ -76,7 +76,19 @@ public class MemoryCatcherClient {
                                                                 String memoryDescription=userEntry.readLine();
                                                                 int addMemory = memorycatcherRef.addMemory(memoryName, memoryDescription);          
                                                             }else if (menuChoice ==(char)'3'){
-                                                                System.out.println("Need to work on share memory");
+                                                                //Joannes code here
+                                                                System.out.println("----------------------------------------------------");
+                                                                System.out.println("This is all your memories:");  
+                                                                Memory[] memories = memorycatcherRef.getAllMemories();
+                                                                for (Memory m : memories){
+                                                                    System.out.println("MEM_ID:" +m.id + " Name:" + m.name);    
+                                                                }
+                                                                System.out.println("Please enter the MEM_ID you want to share: " );
+								int memid =  Integer.parseInt(userEntry.readLine().trim());
+                                                                System.out.println("Please enter the shared_user you want to own: " );
+                                                                String  shared_user =  userEntry.readLine().trim();
+                                                                memorycatcherRef.shareMemory(memid, shared_user);
+                                                                // end of it
                                                             }else if (menuChoice==(char)'4'){
                                                              // Delete memory
                                                                 System.out.println("----------------------------------------------------");

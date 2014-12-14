@@ -27,6 +27,7 @@ module MemoryCatcherApp
 	AllMemories getAllMemories();
 	long addResources(in long resources);
 	long viewResources();
+	long shareMemory(in long memoryId,in string ShareUserId);
 	long shareResources(in long resources,in string name);
 	long addMessage(in string messageName, in string messageContent, in string receiver);
 	AllMessages getAllMessages();
